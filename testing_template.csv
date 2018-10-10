@@ -1,0 +1,13 @@
+phase,condition,left_face,right_face,correct_resp
+testing,80_vs_20,rewardprob-80,rewardprob-20,f
+testing,80_vs_36,rewardprob-80,rewardprob-36,f
+testing,80_vs_64,rewardprob-80,rewardprob-64,f
+testing,64_vs_20,rewardprob-64,rewardprob-20,f
+testing,64_vs_36,rewardprob-64,rewardprob-36,f
+testing,36_vs_20,rewardprob-36,rewardprob-20,f
+testing,80_vs_20,rewardprob-20,rewardprob-80,j
+testing,80_vs_36,rewardprob-36,rewardprob-80,j
+testing,80_vs_64,rewardprob-64,rewardprob-80,j
+testing,64_vs_20,rewardprob-20,rewardprob-64,j
+testing,64_vs_36,rewardprob-36,rewardprob-64,j
+testing,36_vs_20,rewardprob-20,rewardprob-36,j

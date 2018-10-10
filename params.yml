@@ -1,0 +1,5 @@
+RL_params:
+  start_amount: 2
+  win_amount: 0.1
+  lose_amount: 0.1
+distance_metric: euclidean

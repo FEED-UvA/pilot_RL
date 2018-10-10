@@ -1,0 +1,13 @@
+phase,condition,left_face,right_face,correct_resp
+testing,80_vs_20,logs/sub-99/anim-neutral_id-1280_gender-male_rewardprob-80_session-plusneu.png,logs/sub-99/anim-neutral_id-1266_gender-male_rewardprob-20_session-plusneu.png,f
+testing,80_vs_36,logs/sub-99/anim-neutral_id-1280_gender-male_rewardprob-80_session-plusneu.png,logs/sub-99/anim-neutral_id-1318_gender-male_rewardprob-36_session-plusneu.png,f
+testing,80_vs_64,logs/sub-99/anim-neutral_id-1280_gender-male_rewardprob-80_session-plusneu.png,logs/sub-99/anim-neutral_id-1315_gender-male_rewardprob-64_session-plusneu.png,f
+testing,64_vs_20,logs/sub-99/anim-neutral_id-1315_gender-male_rewardprob-64_session-plusneu.png,logs/sub-99/anim-neutral_id-1266_gender-male_rewardprob-20_session-plusneu.png,f
+testing,64_vs_36,logs/sub-99/anim-neutral_id-1315_gender-male_rewardprob-64_session-plusneu.png,logs/sub-99/anim-neutral_id-1318_gender-male_rewardprob-36_session-plusneu.png,f
+testing,36_vs_20,logs/sub-99/anim-neutral_id-1318_gender-male_rewardprob-36_session-plusneu.png,logs/sub-99/anim-neutral_id-1266_gender-male_rewardprob-20_session-plusneu.png,f
+testing,80_vs_20,logs/sub-99/anim-neutral_id-1266_gender-male_rewardprob-20_session-plusneu.png,logs/sub-99/anim-neutral_id-1280_gender-male_rewardprob-80_session-plusneu.png,j
+testing,80_vs_36,logs/sub-99/anim-neutral_id-1318_gender-male_rewardprob-36_session-plusneu.png,logs/sub-99/anim-neutral_id-1280_gender-male_rewardprob-80_session-plusneu.png,j
+testing,80_vs_64,logs/sub-99/anim-neutral_id-1315_gender-male_rewardprob-64_session-plusneu.png,logs/sub-99/anim-neutral_id-1280_gender-male_rewardprob-80_session-plusneu.png,j
+testing,64_vs_20,logs/sub-99/anim-neutral_id-1266_gender-male_rewardprob-20_session-plusneu.png,logs/sub-99/anim-neutral_id-1315_gender-male_rewardprob-64_session-plusneu.png,j
+testing,64_vs_36,logs/sub-99/anim-neutral_id-1318_gender-male_rewardprob-36_session-plusneu.png,logs/sub-99/anim-neutral_id-1315_gender-male_rewardprob-64_session-plusneu.png,j
+testing,36_vs_20,logs/sub-99/anim-neutral_id-1266_gender-male_rewardprob-20_session-plusneu.png,logs/sub-99/anim-neutral_id-1318_gender-male_rewardprob-36_session-plusneu.png,j

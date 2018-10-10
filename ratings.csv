@@ -1,0 +1,6 @@
+phase,rating_attribute,question,question_details
+rating,valence,Hoe prettig vind jij dit gezicht?,
+rating,arousal,Hoe 'emotioneel opwindend' vind jij dit gezicht?,
+rating,attractiveness,Hoe aantrekkelijk vind jij dit gezicht?,
+rating,trustworthiness,Hoe betrouwbaar vind jij dit gezicht?,
+rating,dominance,Hoe dominant vind jij dit gezicht?,
