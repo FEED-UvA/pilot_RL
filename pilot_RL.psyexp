@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <PsychoPy2experiment encoding="utf-8" version="1.90.2">
   <Settings>
-    <Param name="expName" updates="None" val="pilot_RL_drawInformed" valType="str"/>
+    <Param name="expName" updates="None" val="pilot_RL" valType="str"/>
     <Param name="Show info dlg" updates="None" val="True" valType="bool"/>
     <Param name="Enable Escape" updates="None" val="True" valType="bool"/>
     <Param name="Experiment info" updates="None" val="{'participant': '99', 'skip_ratings': 'True'}" valType="code"/>
@@ -310,12 +310,12 @@
         <Param name="color" updates="constant" val="white" valType="str"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="pos" updates="constant" val="(0, 2)" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 8)" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="text" updates="constant" val="Bij de gezichten die straks in beeld komen moet je&amp;#10;de volgende vraag beantwoorden:" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="letterHeight" updates="constant" val=".4" valType="code"/>
-        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="text_size" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="wrap_width" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
       </TextComponent>
       <TextComponent name="pre_rating_instruct_txt">
@@ -334,7 +334,7 @@
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="text" updates="set every repeat" val="$question" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="letterHeight" updates="constant" val=".5" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="(text_size + 0.5)" valType="code"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
       </TextComponent>
@@ -350,7 +350,7 @@
         <Param name="color" updates="constant" val="white" valType="str"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="pos" updates="constant" val="(0, -2)" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -4)" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="text" updates="set every repeat" val="$question_details" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
@@ -370,7 +370,7 @@
         <Param name="color" updates="constant" val="white" valType="str"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="pos" updates="constant" val="(0, -2.5)" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -8)" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="text" updates="constant" val="(Als de vraag duidelijk is, druk dan op een willekeurige toets om te beginnen.)" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
@@ -628,8 +628,8 @@
         <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="pos" updates="constant" val="(0, 0.5)" valType="code"/>
-        <Param name="size" updates="constant" val="(4, 4)" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 2)" valType="code"/>
+        <Param name="size" updates="constant" val="face_size" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="image" updates="constant" val="stims/practice_stims/trump.jpg" valType="str"/>
         <Param name="mask" updates="constant" val="None" valType="str"/>
@@ -650,12 +650,12 @@
         <Param name="color" updates="constant" val="white" valType="str"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="pos" updates="constant" val="(0, 3)" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 10)" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="text" updates="constant" val="Dit is om te &quot;oefenen&quot;!&amp;#10;&amp;#10;(F = links, J = rechts, spatie = bevestig)&amp;#10;" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.3" valType="code"/>
-        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="text_size" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="wrap_width" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
       </TextComponent>
       <RatingScaleComponent name="example_scale_1">
@@ -780,8 +780,8 @@
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="text" updates="constant" val="In de eerste fase ga je een aantal gezichten beoordelen&amp;#10;op een aantal eigenschappen (aantrekkelijkheid, betrouwbaarheid, etc.).&amp;#10;Dit duurt zo'n 10 minuten.&amp;#10;&amp;#10;(Druk op een willekeurige toets om verder te gaan.)" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="letterHeight" updates="constant" val=".4" valType="code"/>
-        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="$text_size" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="wrap_width" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
       </TextComponent>
       <KeyboardComponent name="welcome_resp_2">
@@ -818,8 +818,8 @@
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="text" updates="constant" val="Je zal de gezichten beoordelen op een schaal.&amp;#10;Je gebruikt de volgende knoppen:&amp;#10;&amp;#10;- F: pointer naar LINKS&amp;#10;- J: pointer naar RECHTS&amp;#10;- spatie: keuze bevestigen&amp;#10;&amp;#10;De pointer begint vaak in het midden, maar kan ook aan&amp;#10;de linkerkant beginnen. Dit hangt af van de specifieke&amp;#10;vraag.&amp;#10;&amp;#10;Er is geen tijdsdruk.&amp;#10;&amp;#10;(Druk op een willekeurige toets om een voorbeeld te zien.)" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="letterHeight" updates="constant" val=".4" valType="code"/>
-        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="text_size" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="wrap_width" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
       </TextComponent>
       <KeyboardComponent name="instruct_cont_5">
@@ -842,7 +842,7 @@
     <Routine name="welcome_1">
       <CodeComponent name="setup_exp">
         <Param name="name" updates="None" val="setup_exp" valType="code"/>
-        <Param name="Begin Experiment" updates="constant" val="import os&amp;#10;import os.path as op&amp;#10;import pandas as pd&amp;#10;import shutil&amp;#10;import yaml&amp;#10;import sys&amp;#10;from glob import glob&amp;#10;&amp;#10;# Load params&amp;#10;with open('params.yml', 'r') as params:&amp;#10;    custom_params = yaml.load(params)&amp;#10;&amp;#10;# Define variables dependent on subject&amp;#10;subj_info_df = pd.read_csv('subject_info.csv')&amp;#10;sub_nr = expInfo['participant']&amp;#10;this_subj_df = subj_info_df.query('subject_id == @sub_nr')&amp;#10;&amp;#10;RL_order = this_subj_df['RL_order'].values[0]&amp;#10;face_gender = this_subj_df['face_gender'].values[0]&amp;#10;&amp;#10;# Create new subject dir in which to store stims/logs&amp;#10;sub_dir = op.join('logs', 'sub-%s' % sub_nr)&amp;#10;if not op.isdir(sub_dir):&amp;#10;    os.makedirs(sub_dir)&amp;#10;&amp;#10;# Remove existing stuff&amp;#10;existing_imgs = glob(op.join(sub_dir, '*.png'))&amp;#10;existing_csvs = glob(op.join(sub_dir, '*.csv'))&amp;#10;_ = [os.remove(f) for f in existing_imgs]&amp;#10;_ = [os.remove(f) for f in existing_csvs]&amp;#10;&amp;#10;rewards_file = op.join(sub_dir, 'rewards.txt')&amp;#10;if op.isfile(rewards_file):&amp;#10;    os.remove(rewards_file)&amp;#10;else:&amp;#10;    open(rewards_file, 'a').close()&amp;#10;&amp;#10;if sys.platform[:3] == 'win':&amp;#10;    sys.path.append(op.abspath('deps'))&amp;#10;    stims_file = 'stims_windows.csv'&amp;#10;else:&amp;#10;    stims_file = 'stims.csv'" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="import os&amp;#10;import os.path as op&amp;#10;import pandas as pd&amp;#10;import shutil&amp;#10;import yaml&amp;#10;import sys&amp;#10;from glob import glob&amp;#10;&amp;#10;# Load params&amp;#10;with open('params.yml', 'r') as params:&amp;#10;    custom_params = yaml.load(params)&amp;#10;    text_size = custom_params['text_size']&amp;#10;    wrap_width = custom_params['wrap_width']&amp;#10;    face_size = custom_params['face_size']&amp;#10;&amp;#10;# Define variables dependent on subject&amp;#10;subj_info_df = pd.read_csv('subject_info.csv')&amp;#10;sub_nr = expInfo['participant']&amp;#10;this_subj_df = subj_info_df.query('subject_id == @sub_nr')&amp;#10;&amp;#10;RL_order = this_subj_df['RL_order'].values[0]&amp;#10;face_gender = this_subj_df['face_gender'].values[0]&amp;#10;&amp;#10;# Create new subject dir in which to store stims/logs&amp;#10;sub_dir = op.join('logs', 'sub-%s' % sub_nr)&amp;#10;if not op.isdir(sub_dir):&amp;#10;    os.makedirs(sub_dir)&amp;#10;&amp;#10;# Remove existing stuff&amp;#10;existing_imgs = glob(op.join(sub_dir, '*.png'))&amp;#10;existing_csvs = glob(op.join(sub_dir, '*.csv'))&amp;#10;_ = [os.remove(f) for f in existing_imgs]&amp;#10;_ = [os.remove(f) for f in existing_csvs]&amp;#10;&amp;#10;rewards_file = op.join(sub_dir, 'rewards.txt')&amp;#10;if op.isfile(rewards_file):&amp;#10;    os.remove(rewards_file)&amp;#10;else:&amp;#10;    open(rewards_file, 'a').close()&amp;#10;&amp;#10;if sys.platform[:3] == 'win':&amp;#10;    sys.path.append(op.abspath('deps'))&amp;#10;    stims_file = 'stims_windows.csv'&amp;#10;else:&amp;#10;    stims_file = 'stims.csv'" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
@@ -860,12 +860,12 @@
         <Param name="color" updates="constant" val="white" valType="str"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="pos" updates="constant" val="(0, 2.5)" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 5)" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="text" updates="constant" val="Welkom bij dit experiment!&amp;#10;&amp;#10;Dit experiment gaat over de perceptie van gezichten en&amp;#10;de invloed van associatief leren.&amp;#10;&amp;#10;Het experiment bestaat uit twee fases:&amp;#10;- een uitgebreide beoordelings-fase&amp;#10;- een leer-fase met een korte beoordelingsfase (x2)&amp;#10;&amp;#10;De leer-fase (met korte beoordeling daarna) doe je twee keer." valType="str"/>
+        <Param name="text" updates="constant" val="Welkom bij dit experiment!&amp;#10;&amp;#10;Dit experiment gaat over de perceptie van gezichten en de invloed van associatief leren.&amp;#10;&amp;#10;Het experiment bestaat uit twee fases:&amp;#10;- een uitgebreide beoordelings-fase&amp;#10;- een leer-fase met een korte beoordelingsfase (x2)&amp;#10;&amp;#10;De leer-fase (met korte beoordeling daarna) doe je twee keer." valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="letterHeight" updates="constant" val=".4" valType="code"/>
-        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="$text_size" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="wrap_width" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
       </TextComponent>
       <ImageComponent name="setup_RL_image">
@@ -880,8 +880,8 @@
         <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="pos" updates="constant" val="(0, -2)" valType="code"/>
-        <Param name="size" updates="constant" val="(14, 3.8)" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -3)" valType="code"/>
+        <Param name="size" updates="constant" val="(28, 7)" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="image" updates="constant" val="pilot_RL_setup.png" valType="str"/>
         <Param name="mask" updates="constant" val="None" valType="str"/>
@@ -902,12 +902,12 @@
         <Param name="color" updates="constant" val="white" valType="str"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="pos" updates="constant" val="(0, -4)" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -10)" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="text" updates="constant" val="(Druk op een willekeurige knop om door te gaan.)" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.4" valType="code"/>
-        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="$text_size" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="wrap_width" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
       </TextComponent>
       <KeyboardComponent name="welcome_resp_1">
@@ -926,6 +926,28 @@
         <Param name="correctAns" updates="constant" val="" valType="str"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
+      <ImageComponent name="image">
+        <Param name="name" updates="None" val="image" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopVal" updates="constant" val="1.0" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="size" updates="constant" val="face_size" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="image" updates="constant" val="stims\neutral_stims\anim-neutral_id-1260.png" valType="str"/>
+        <Param name="mask" updates="constant" val="None" valType="str"/>
+        <Param name="texture resolution" updates="constant" val="128" valType="code"/>
+        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
+        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
+        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
+      </ImageComponent>
     </Routine>
     <Routine name="instruct_RL_5">
       <CodeComponent name="practice_switch">
@@ -1928,8 +1950,8 @@
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="text" updates="constant" val="Als de beoordelings-fase duidelijk is,&amp;#10;dan kunnen we beginnen.&amp;#10;&amp;#10;(Druk op een knop om de eerste sessie te beginnen!)" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="letterHeight" updates="constant" val=".4" valType="code"/>
-        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="text_size" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="wrap_width" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
       </TextComponent>
       <KeyboardComponent name="instruct_cont_6">

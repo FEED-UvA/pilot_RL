@@ -3,3 +3,6 @@ RL_params:
   win_amount: 0.1
   lose_amount: 0.1
 distance_metric: euclidean
+text_size: 0.8
+wrap_width: 50
+face_size: [8, 10.66]

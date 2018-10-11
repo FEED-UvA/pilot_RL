@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.90.2),
-    on oktober 11, 2018, at 14:18
+    on oktober 11, 2018, at 15:16
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -26,7 +26,7 @@ _thisDir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(_thisDir)
 
 # Store info about the experiment session
-expName = 'pilot_RL_drawInformed'  # from the Builder filename that created this script
+expName = 'pilot_RL'  # from the Builder filename that created this script
 expInfo = {'participant': '99', 'skip_ratings': 'True'}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
 if dlg.OK == False:
@@ -78,6 +78,9 @@ from glob import glob
 # Load params
 with open('params.yml', 'r') as params:
     custom_params = yaml.load(params)
+    text_size = custom_params['text_size']
+    wrap_width = custom_params['wrap_width']
+    face_size = custom_params['face_size']
 
 # Define variables dependent on subject
 subj_info_df = pd.read_csv('subject_info.csv')
@@ -110,31 +113,38 @@ if sys.platform[:3] == 'win':
 else:
     stims_file = 'stims.csv'
 welcome_txt_1 = visual.TextStim(win=win, name='welcome_txt_1',
-    text='Welkom bij dit experiment!\n\nDit experiment gaat over de perceptie van gezichten en\nde invloed van associatief leren.\n\nHet experiment bestaat uit twee fases:\n- een uitgebreide beoordelings-fase\n- een leer-fase met een korte beoordelingsfase (x2)\n\nDe leer-fase (met korte beoordeling daarna) doe je twee keer.',
+    text='Welkom bij dit experiment!\n\nDit experiment gaat over de perceptie van gezichten en de invloed van associatief leren.\n\nHet experiment bestaat uit twee fases:\n- een uitgebreide beoordelings-fase\n- een leer-fase met een korte beoordelingsfase (x2)\n\nDe leer-fase (met korte beoordeling daarna) doe je twee keer.',
     font='Arial',
-    pos=(0, 2.5), height=.4, wrapWidth=None, ori=0, 
+    pos=(0, 5), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-1.0);
 setup_RL_image = visual.ImageStim(
     win=win, name='setup_RL_image',
     image='pilot_RL_setup.png', mask=None,
-    ori=0, pos=(0, -2), size=(14, 3.8),
+    ori=0, pos=(0, -3), size=(28, 7),
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-2.0)
 welcome_txt_1_2 = visual.TextStim(win=win, name='welcome_txt_1_2',
     text='(Druk op een willekeurige knop om door te gaan.)',
     font='Arial',
-    pos=(0, -4), height=0.4, wrapWidth=None, ori=0, 
+    pos=(0, -10), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-3.0);
+image = visual.ImageStim(
+    win=win, name='image',
+    image='stims\\neutral_stims\\anim-neutral_id-1260.png', mask=None,
+    ori=0, pos=(0, 0), size=face_size,
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=-5.0)
 
 # Initialize components for Routine "welcome_2"
 welcome_2Clock = core.Clock()
 welcome_txt_2 = visual.TextStim(win=win, name='welcome_txt_2',
     text="In de eerste fase ga je een aantal gezichten beoordelen\nop een aantal eigenschappen (aantrekkelijkheid, betrouwbaarheid, etc.).\nDit duurt zo'n 10 minuten.\n\n(Druk op een willekeurige toets om verder te gaan.)",
     font='Arial',
-    pos=(0, 0), height=.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
@@ -143,7 +153,7 @@ welcome_3Clock = core.Clock()
 welcome_txt_3 = visual.TextStim(win=win, name='welcome_txt_3',
     text='Je zal de gezichten beoordelen op een schaal.\nJe gebruikt de volgende knoppen:\n\n- F: pointer naar LINKS\n- J: pointer naar RECHTS\n- spatie: keuze bevestigen\n\nDe pointer begint vaak in het midden, maar kan ook aan\nde linkerkant beginnen. Dit hangt af van de specifieke\nvraag.\n\nEr is geen tijdsdruk.\n\n(Druk op een willekeurige toets om een voorbeeld te zien.)',
     font='Arial',
-    pos=(0, 0), height=.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
@@ -152,14 +162,14 @@ example_scaleClock = core.Clock()
 practice_image = visual.ImageStim(
     win=win, name='practice_image',
     image='stims/practice_stims/trump.jpg', mask=None,
-    ori=0, pos=(0, 0.5), size=(4, 4),
+    ori=0, pos=(0, 2), size=face_size,
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=0.0)
 example_scale_hint = visual.TextStim(win=win, name='example_scale_hint',
     text='Dit is om te "oefenen"!\n\n(F = links, J = rechts, spatie = bevestig)\n',
     font='Arial',
-    pos=(0, 3), height=0.3, wrapWidth=None, ori=0, 
+    pos=(0, 10), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-1.0);
 example_scale_1 = visual.RatingScale(win=win, name='example_scale_1', leftKeys=['f'],
@@ -182,7 +192,7 @@ welcome_4Clock = core.Clock()
 welcome_txt_4 = visual.TextStim(win=win, name='welcome_txt_4',
     text='Als de beoordelings-fase duidelijk is,\ndan kunnen we beginnen.\n\n(Druk op een knop om de eerste sessie te beginnen!)',
     font='Arial',
-    pos=(0, 0), height=.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
@@ -536,7 +546,7 @@ continueRoutine = True
 
 welcome_resp_1 = event.BuilderKeyResponse()
 # keep track of which components have finished
-welcome_1Components = [welcome_txt_1, setup_RL_image, welcome_txt_1_2, welcome_resp_1]
+welcome_1Components = [welcome_txt_1, setup_RL_image, welcome_txt_1_2, welcome_resp_1, image]
 for thisComponent in welcome_1Components:
     if hasattr(thisComponent, 'status'):
         thisComponent.status = NOT_STARTED
@@ -587,6 +597,16 @@ while continueRoutine:
         if len(theseKeys) > 0:  # at least one key was pressed
             # a response ends the routine
             continueRoutine = False
+    
+    # *image* updates
+    if t >= 0.0 and image.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        image.tStart = t
+        image.frameNStart = frameN  # exact frame index
+        image.setAutoDraw(True)
+    frameRemains = 0.0 + 1.0- win.monitorFramePeriod * 0.75  # most of one frame period left
+    if image.status == STARTED and t >= frameRemains:
+        image.setAutoDraw(False)
     
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
