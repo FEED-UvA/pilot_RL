@@ -4,7 +4,7 @@ from psychopy import visual
 rating_scale_args = dict(
 
     common_args=dict(
-        stretch=2,
+        stretch=1.5,
         marker=u'slider',
         size=1.0,
         precision=1,
@@ -20,49 +20,47 @@ rating_scale_args = dict(
         low=-4,
         high=4,
         tickMarks=[-4, 0, 4],
-        scale='',
-        labels=['Heel onprettig', '', 'Heel prettig']
+        scale=''
     ),
 
     arousal=dict(
-        low=0,
-        high=8,
-        tickMarks=[0, 8],
-        scale='',
-        labels=['Totaal niet opwindend', 'Heel opwindend']
+        low=-4,
+        high=4,
+        tickMarks=[-4, 0, 4],
+        scale=''
     ),
     
     attractiveness=dict(
         low=-4,
         high=4,
         tickMarks=[-4, 0, 4],
-        scale='',
-        labels=['Heel onaantrekkelijk', '', 'Heel aantrekkeljk']
+        scale=''
     ),
 
     dominance=dict(
         low=-4,
         high=4,
         tickMarks=[-4, 0, 4],
-        scale='',
-        labels=['Totaal niet dominant', '', 'Heel dominant']
+        scale=''
     ),
 
     trustworthiness=dict(
         low=-4,
         high=4,
         tickMarks=[-4, 0, 4],
-        scale='',
-        labels=['Heel onbetrouwbaar', '', 'Heel betrouwbaar'],
+        scale=''
     )
 
 )
 
 
-def construct_rating_scale(rating_attribute, win, pos=(0, -.75), name='pre_rating_scale', response='keyboard'):
+def construct_rating_scale(rating_attribute, low_high, win, pos=(0, -.5), name='pre_rating_scale', response='keyboard'):
     
     all_args = rating_scale_args['common_args'].copy()
-    all_args.update(rating_scale_args[rating_attribute])
+    these_args = rating_scale_args[rating_attribute]
+    these_args['labels'] = [low_high[0]] + [''] + [low_high[1]]
+    print(these_args)
+    all_args.update(these_args)
     
     if response == 'mouse':
         all_args['mouseOnly'] = True
