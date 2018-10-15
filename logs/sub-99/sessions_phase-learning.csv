@@ -1,3 +1,0 @@
-stim_csv,trial_csv,RL_wrong_instruction,RL_wrong_instruction_n,feedback_txt_incorrect,RL_session_notice,session_name,number_str,practice_reps
-logs/sub-99/stims_session-plusneu.csv,logs/sub-99/trials_phase-learning_session-plusneu.csv,win je niks.,dat je niks wint.,(0 euro gewonnen), ,plusneu,eerste,1
-logs/sub-99/stims_session-plusmin.csv,logs/sub-99/trials_phase-learning_session-plusmin.csv,VERLIES je 0.1 euro.,"gestraft wordt, doordat je 0.1 euro verliest.",(0.1 euro verloren),"Let op: in de eerste sessie won je niks als je keus fout was, maar in deze sessie VERLIES je 0.1 euro als je het fout hebt!",plusmin,tweede,0

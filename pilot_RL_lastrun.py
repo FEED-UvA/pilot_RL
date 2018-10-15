@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.90.2),
-    on Mon 15 Oct 2018 02:09:15 PM CEST
+    on oktober 15, 2018, at 17:06
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -40,7 +40,7 @@ filename = _thisDir + os.sep + u'logs/sub-%s/sub-%s_events' % (expInfo['particip
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='/media/lukas/goliath/FEED/pilot_RL/pilot_RL.psyexp',
+    originPath='D:\\pilot_RL\\pilot_RL.psyexp',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -55,7 +55,7 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 win = visual.Window(
     size=[1920, 1080], fullscr=True, screen=0,
     allowGUI=True, allowStencil=False,
-    monitor='UVA', color=[0,0,0], colorSpace='rgb',
+    monitor='test', color=[0,0,0], colorSpace='rgb',
     blendMode='avg', useFBO=True,
     units='deg')
 # store frame rate of monitor if we can measure it
@@ -323,7 +323,7 @@ practice_right_face = visual.ImageStim(
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-2.0)
 practice_response_prompt = visual.TextStim(win=win, name='practice_response_prompt',
-    text='Kies links ("f") of rechts ("j").\nJe hebt 2 seconden om te antwoorden!',
+    text='Kies links ("f") of rechts ("j").\nJe hebt 3 seconden om te antwoorden!',
     font='Arial',
     pos=(0, -6), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
@@ -1498,7 +1498,7 @@ en %s
 door te leren welke gezichten gekoppeld zijn met een hogere
 kans op beloning. Het gemiddelde bedrag dat je verdient tijdens
 de twee sessies mag je ook daadwerkelijk mee naar huis nemen
-(tot maximaal 12 euro)!
+(afgerond op de hele euro)!
 
 %s
 
@@ -1970,7 +1970,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             else:
                 if session_name == 'plusneu':
                     practice_money += 0
-                elif session_name == 'plusneg':
+                elif session_name == 'plusmin':
                     practice_money -= custom_params['RL_params']['lose_amount']
             
         
@@ -2454,9 +2454,8 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             else:
                 if session_name == 'plusneu':
                     real_money[session_name] += 0
-                elif session_name == 'plusneg':
+                elif session_name == 'plusmin':
                     real_money[session_name] -= custom_params['RL_params']['lose_amount']
-            
         
         # ------Prepare to start Routine "real_RL_feedback"-------
         t = 0
