@@ -1,6 +1,6 @@
 phase,rating_attribute,rating_question,rating_question_details,rating_low,rating_high
-rating,valence,Hoe ervaar jij dit gezicht?,Je beoordeelt dit op een schaal van ‘heel onprettig’ tot ‘heel prettig’.,Heel onprettig,Heel prettig
-rating,arousal,Hoe geactiveerd maakt dit gezicht je?,"Je beoordeelt dit op een schaal van ‘helemaal niet geactiveerd’ tot ‘heel geactiveerd’. Met ‘geactiveerd’ bedoelen we dat het het gezicht je alert, energiek, en/of gespannen doet voelen; met ‘niet geactiveerd’ bedoelen we dat het gezicht je kalm, ontspannen, en/of rustig doet voelen.",Helemaal niet geactiveerd,Heel geactiveerd
-rating,attractiveness,Hoe aantrekkelijk vind jij dit gezicht?,Je beoordeelt dit op een schaal van ‘heel onaantrekkelijk’ tot ‘heel aantrekkelijk’.,Heel onaantrekkelijk,Heel aantrekkelijk
-rating,trustworthiness,Hoe betrouwbaar vind jij dit gezicht?,Je beoordeelt dit op een schaal van ‘heel onbetrouwbaar’ tot ‘heel betrouwbaar’.,Heel onbetrouwbaar,Heel betrouwbaar
-rating,dominance,Hoe dominant vind jij dit gezicht?,Je beoordeelt dit op een schaal van ‘helemaal niet dominant’ tot ‘heel dominant’.,Helemaal niet dominant,Heel dominant
+rating,valence,Hoe ervaar jij dit gezicht?,Je beoordeelt dit op een schaal van ‘Zeer onprettig’ tot ‘Zeer prettig’.,Zeer onprettig,Zeer prettig
+rating,arousal,Hoe geactiveerd maakt dit gezicht je?,"Je beoordeelt dit op een schaal van ‘Helemaal niet geactiveerd’ tot ‘Zeer geactiveerd’. Met ‘geactiveerd’ bedoelen we dat het het gezicht je alert, energiek, en/of gespannen doet voelen; met ‘niet geactiveerd’ bedoelen we dat het gezicht je kalm, ontspannen, en/of rustig doet voelen.",Helemaal niet geactiveerd,Zeer geactiveerd
+rating,attractiveness,Hoe aantrekkelijk vind jij dit gezicht?,Je beoordeelt dit op een schaal van ‘Zeer onaantrekkelijk’ tot ‘Zeer aantrekkelijk’.,Zeer onaantrekkelijk,Zeer aantrekkelijk
+rating,trustworthiness,Hoe betrouwbaar vind jij dit gezicht?,Je beoordeelt dit op een schaal van ‘Zeer onbetrouwbaar’ tot ‘Zeer betrouwbaar’.,Zeer onbetrouwbaar,Zeer betrouwbaar
+rating,dominance,Hoe dominant vind jij dit gezicht?,Je beoordeelt dit op een schaal van ‘Helemaal niet dominant’ tot ‘Zeer dominant’.,Helemaal niet dominant,Zeer dominant

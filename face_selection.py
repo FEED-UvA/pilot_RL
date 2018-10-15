@@ -14,7 +14,7 @@ def select_stim_based_on_similarity(rating_df, face_gender='female', distance_me
         rating_df = rating_df.set_index(keys='stim_file')
     
     ratings = rating_df.loc[rating_df.gender == face_gender, face_attr]
-    rating_values = ratings.loc[:, face_attr].values
+    rating_values = ratings.values
     dist = pairwise_distances(rating_values, metric=distance_metric)
     dist[np.diag_indices_from(dist)] = np.inf
 

@@ -59,7 +59,6 @@ def construct_rating_scale(rating_attribute, low_high, win, pos=(0, -.5), name='
     all_args = rating_scale_args['common_args'].copy()
     these_args = rating_scale_args[rating_attribute]
     these_args['labels'] = [low_high[0]] + [''] + [low_high[1]]
-    print(these_args)
     all_args.update(these_args)
     
     if response == 'mouse':

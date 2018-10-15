@@ -36,9 +36,10 @@ def clean(file, out_dir=op.join('data', 'pilot_RL')):
 
     LEARNING_COLS = {'condition': 'reward_choice', 'left_face': 'left_face', 'right_face': 'right_face',
                      'correct_resp': 'correct_resp', 'real_RL_response.rt': 'RT', 'real_RL_response.keys': 'actual_resp',
-                     'real_RL_response.corr': 'correct'}
-    
-    learning_df = (df.loc[df.phase == 'learning', LEARNING_COLS.keys()]
+                     'real_RL_response.corr': 'correct', 'session_name': 'session'}
+
+    learning_df = df.loc[df.phase == 'learning', LEARNING_COLS.keys()]
+    learning_df = (learning_df
         .rename(columns=LEARNING_COLS)
         .replace({'logs/%s/' % sub_name: ''}, regex=True)
     )
@@ -52,5 +53,5 @@ def clean(file, out_dir=op.join('data', 'pilot_RL')):
 
 if __name__ == '__main__':
 
-    test_file = 'exp/pilot_RL/logs/sub-99/sub-99_events.csv'
+    test_file = 'logs/sub-99/sub-99_events.csv'
     clean(test_file)

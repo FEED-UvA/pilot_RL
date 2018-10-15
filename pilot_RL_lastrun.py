@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.90.2),
-    on Fri 12 Oct 2018 03:20:15 PM CEST
+    on Mon 15 Oct 2018 02:09:15 PM CEST
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -27,7 +27,7 @@ os.chdir(_thisDir)
 
 # Store info about the experiment session
 expName = 'pilot_RL'  # from the Builder filename that created this script
-expInfo = {'participant': '99', 'gender': '', 'skip_ratings': 'False'}
+expInfo = {'participant': '99', 'participant_gender': 'F', 'skip_practice': 'False', 'skip_ratings': 'False'}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
 if dlg.OK == False:
     core.quit()  # user pressed cancel
@@ -81,6 +81,7 @@ with open('params.yml', 'r') as params:
     text_size = custom_params['text_size']
     wrap_width = custom_params['wrap_width']
     face_size = custom_params['face_size']
+    n_trials = int(custom_params['n_trials'])
 
 # Define variables dependent on subject
 subj_info_df = pd.read_csv('subject_info.csv')
@@ -112,8 +113,6 @@ if sys.platform[:3] == 'win':
     stims_file = 'stims_windows.csv'
 else:
     stims_file = 'stims.csv'
-
-print(stims_file)
 welcome_txt_1 = visual.TextStim(win=win, name='welcome_txt_1',
     text='Welkom bij dit experiment!\n\nDit experiment gaat over de perceptie van gezichten en de invloed van associatief leren.\n\nHet experiment bestaat uit twee fases:\n- een uitgebreide beoordelings-fase\n- een leer-fase met een korte beoordelingsfase (x2)\n\nDe leer-fase (met korte beoordeling daarna) doe je twee keer.',
     font='Arial',
@@ -245,15 +244,6 @@ pause_rating_text = visual.TextStim(win=win, name='pause_rating_text',
 select_facesClock = core.Clock()
 
 
-# Initialize components for Routine "begin_session"
-begin_sessionClock = core.Clock()
-begin_session_txt = visual.TextStim(win=win, name='begin_session_txt',
-    text='default text',
-    font='Arial',
-    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
-    depth=0.0);
-
 # Initialize components for Routine "instruct_RL_1"
 instruct_RL_1Clock = core.Clock()
 
@@ -284,12 +274,13 @@ instruct_RL_2_txt = visual.TextStim(win=win, name='instruct_RL_2_txt',
 
 # Initialize components for Routine "instruct_RL_3"
 instruct_RL_3Clock = core.Clock()
+
 instruct_RL_3_txt = visual.TextStim(win=win, name='instruct_RL_3_txt',
     text='default text',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
-    depth=0.0);
+    depth=-1.0);
 
 # Initialize components for Routine "instruct_RL_5"
 instruct_RL_5Clock = core.Clock()
@@ -500,7 +491,7 @@ post_ratingClock = core.Clock()
 post_rating_img = visual.ImageStim(
     win=win, name='post_rating_img',
     image='sin', mask=None,
-    ori=0, pos=(0, 1), size=(7.5, 10),
+    ori=0, pos=(0, 1), size=face_size,
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=0.0)
@@ -1182,6 +1173,7 @@ from face_selection import select_stim_based_on_similarity
 rating_df.to_csv(op.join(sub_dir, 'sub-%s_face-ratings.csv' % sub_nr))
 
 if expInfo['skip_ratings']:
+    print("Trying to find existing ratings for subject %s" % sub_nr)
     rating_df = pd.read_csv(op.join('test_data', 'sub-%s_face-ratings.csv' % sub_nr))
 
     if sys.platform[:3] == 'win':
@@ -1317,82 +1309,6 @@ for thisSession_loop in session_loop:
         for paramName in thisSession_loop:
             exec('{} = thisSession_loop[paramName]'.format(paramName))
     
-    # ------Prepare to start Routine "begin_session"-------
-    t = 0
-    begin_sessionClock.reset()  # clock
-    frameN = -1
-    continueRoutine = True
-    # update component parameters for each repeat
-    begin_session_txt.setText("""Dit is het begin van de %s sessie!
-
-Eerst zal je een aantal gezichten beoordelen op een aantal eigenschappen.
-Voor elke beoordeling van een nieuwe eigenschap zullen we de beoordeling
-in meer detail uitleggen.
-
-(Druk op een willekeurige toets om te beginnen met fase 1!)""" % number_str)
-    instruct_cont = event.BuilderKeyResponse()
-    # keep track of which components have finished
-    begin_sessionComponents = [begin_session_txt, instruct_cont]
-    for thisComponent in begin_sessionComponents:
-        if hasattr(thisComponent, 'status'):
-            thisComponent.status = NOT_STARTED
-    
-    # -------Start Routine "begin_session"-------
-    while continueRoutine:
-        # get current time
-        t = begin_sessionClock.getTime()
-        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-        # update/draw components on each frame
-        
-        # *begin_session_txt* updates
-        if t >= 0 and begin_session_txt.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            begin_session_txt.tStart = t
-            begin_session_txt.frameNStart = frameN  # exact frame index
-            begin_session_txt.setAutoDraw(True)
-        
-        # *instruct_cont* updates
-        if t >= 0 and instruct_cont.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            instruct_cont.tStart = t
-            instruct_cont.frameNStart = frameN  # exact frame index
-            instruct_cont.status = STARTED
-            # keyboard checking is just starting
-            event.clearEvents(eventType='keyboard')
-        if instruct_cont.status == STARTED:
-            theseKeys = event.getKeys()
-            
-            # check for quit:
-            if "escape" in theseKeys:
-                endExpNow = True
-            if len(theseKeys) > 0:  # at least one key was pressed
-                # a response ends the routine
-                continueRoutine = False
-        
-        # check if all components have finished
-        if not continueRoutine:  # a component has requested a forced-end of Routine
-            break
-        continueRoutine = False  # will revert to True if at least one component still running
-        for thisComponent in begin_sessionComponents:
-            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                continueRoutine = True
-                break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
-        
-        # refresh the screen
-        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-            win.flip()
-    
-    # -------Ending Routine "begin_session"-------
-    for thisComponent in begin_sessionComponents:
-        if hasattr(thisComponent, "setAutoDraw"):
-            thisComponent.setAutoDraw(False)
-    # the Routine "begin_session" was not non-slip safe, so reset the non-slip timer
-    routineTimer.reset()
-    
     # ------Prepare to start Routine "instruct_RL_1"-------
     t = 0
     instruct_RL_1Clock.reset()  # clock
@@ -1401,10 +1317,9 @@ in meer detail uitleggen.
     # update component parameters for each repeat
     if number_str == 'eerste':
         practice_skip_txt_1 = """
-    Dit was het einde van fase één.
+    Dit is het begin van fase 2, waarin je een leer-taakje gaat doen.
     
-    In fase twee ga je een leer-taak doen.
-    Die zullen we uitgebreid uitleggen en 
+    Deze taak zullen we uitgebreid uitleggen en 
     die zal je eerst even oefenen voordat je
     gaat beginnen aan de echte taak.
     
@@ -1412,9 +1327,7 @@ in meer detail uitleggen.
     """
     else:
         practice_skip_txt_1 = """
-    Dit was het einde van fase één.
-    
-    In fase twee ga je wederom een leer-taak doen,
+    Nu ga je wederom een leer-taakje doen,
     maar net iets anders dan in de eerste sessie.
     
     (Druk op een willekeurig toets om verder te gaan.)
@@ -1660,6 +1573,8 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
     frameN = -1
     continueRoutine = True
     # update component parameters for each repeat
+    if number_str == 'tweede':
+        continueRoutine = False
     instruct_RL_3_txt.setText('In het begin van de taak weet je nog niet goed welke gezichten\nde hoogste kans op beloning (het winnen van geld) hebben, maar\nhet is de bedoeling dat je daar met "trial-and-error" gedurende\nde leer-taak achter komt.\n\n(Druk op een willekeurige knop om verder te gaan.)')
     instruct_RL_3_resp = event.BuilderKeyResponse()
     # keep track of which components have finished
@@ -1674,6 +1589,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         t = instruct_RL_3Clock.getTime()
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
+        
         
         # *instruct_RL_3_txt* updates
         if t >= 0.0 and instruct_RL_3_txt.status == NOT_STARTED:
@@ -1721,6 +1637,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
     for thisComponent in instruct_RL_3Components:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
+    
     # the Routine "instruct_RL_3" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     
@@ -1755,6 +1672,9 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         practice_skip_txt = """We slaan de oefenronde deze keer over.
     
     (Druk op een willekeurige toets om verder te gaan.)"""
+        practice_reps = 0
+    
+    if expInfo['skip_practice'] == 'True':
         practice_reps = 0
     instruct_RL_5_txt.setText(practice_skip_txt)
     instruct_RL_5_resp = event.BuilderKeyResponse()
@@ -2155,7 +2075,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
     Ter herinnering: het enige verschil met de eerste sessie is
     dat je deze keer %s bij een fout antwoord!
     
-    (Druk op een willekeurige toets om verder te gaan.)
+    (Druk op een willekeurige toets om te beginnen met de taak!)
     """ % tmp_txt
     with open(rewards_file, 'a') as rewards_file_f:
         rewards_file_f.write('Practice rewards: %.1f\n' % practice_money)
@@ -2253,9 +2173,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
     (Druk op een toets om te beginnen met de echte taak.)
     """
     else:
-        practice_skip_txt_4 = """
-    (Druk op een willekeurige toets om te beginnen met de echte taak.)
-    """
+        continueRoutine = False
     begin_real_RL_txt_2.setText(practice_skip_txt_4)
     begin_real_RL_continue_2 = event.BuilderKeyResponse()
     # keep track of which components have finished
@@ -2375,7 +2293,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             thisComponent.setAutoDraw(False)
     
     # set up handler to look after randomisation of conditions etc
-    real_trials = data.TrialHandler(nReps=1, method='random', 
+    real_trials = data.TrialHandler(nReps=(int(n_trials / 50)), method='random', 
         extraInfo=expInfo, originPath=-1,
         trialList=data.importConditions(trial_csv),
         seed=None, name='real_trials')
@@ -2686,7 +2604,7 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
         routineTimer.reset()
         thisExp.nextEntry()
         
-    # completed 1 repeats of 'real_trials'
+    # completed (int(n_trials / 50)) repeats of 'real_trials'
     
     
     # ------Prepare to start Routine "overview_money"-------
@@ -2864,10 +2782,10 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
         continueRoutine = True
         # update component parameters for each repeat
         from custom_rating_scales import construct_rating_scale
-        post_rating_scale = construct_rating_scale(rating_attribute, win=win)
+        post_rating_scale = construct_rating_scale(rating_attribute, low_high=[rating_low, rating_high], win=win)
         
-        if not question_details:
-            question_details = ''
+        if not rating_question_details:
+            rating_question_details = ''
         pre_rating_instruct_txt_2.setText(rating_question)
         rating_press_to_continue_2.setText(rating_question_details)
         post_rating_instruct_continue = event.BuilderKeyResponse()
@@ -3172,6 +3090,7 @@ while continueRoutine and routineTimer.getTime() > 0:
 for thisComponent in thanksComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
+
 
 
 

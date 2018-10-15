@@ -1,0 +1,13 @@
+phase,condition,left_face,right_face,correct_resp
+testing,80_vs_20,logs/sub-99/id-1269_gender-F_age-23_rewardprob-80_session-plusneu.png,logs/sub-99/id-1291_gender-F_age-24_rewardprob-20_session-plusneu.png,f
+testing,80_vs_36,logs/sub-99/id-1269_gender-F_age-23_rewardprob-80_session-plusneu.png,logs/sub-99/id-1360_gender-F_age-20_rewardprob-36_session-plusneu.png,f
+testing,80_vs_64,logs/sub-99/id-1269_gender-F_age-23_rewardprob-80_session-plusneu.png,logs/sub-99/id-1274_gender-F_age-33_rewardprob-64_session-plusneu.png,f
+testing,64_vs_20,logs/sub-99/id-1274_gender-F_age-33_rewardprob-64_session-plusneu.png,logs/sub-99/id-1291_gender-F_age-24_rewardprob-20_session-plusneu.png,f
+testing,64_vs_36,logs/sub-99/id-1274_gender-F_age-33_rewardprob-64_session-plusneu.png,logs/sub-99/id-1360_gender-F_age-20_rewardprob-36_session-plusneu.png,f
+testing,36_vs_20,logs/sub-99/id-1360_gender-F_age-20_rewardprob-36_session-plusneu.png,logs/sub-99/id-1291_gender-F_age-24_rewardprob-20_session-plusneu.png,f
+testing,80_vs_20,logs/sub-99/id-1291_gender-F_age-24_rewardprob-20_session-plusneu.png,logs/sub-99/id-1269_gender-F_age-23_rewardprob-80_session-plusneu.png,j
+testing,80_vs_36,logs/sub-99/id-1360_gender-F_age-20_rewardprob-36_session-plusneu.png,logs/sub-99/id-1269_gender-F_age-23_rewardprob-80_session-plusneu.png,j
+testing,80_vs_64,logs/sub-99/id-1274_gender-F_age-33_rewardprob-64_session-plusneu.png,logs/sub-99/id-1269_gender-F_age-23_rewardprob-80_session-plusneu.png,j
+testing,64_vs_20,logs/sub-99/id-1291_gender-F_age-24_rewardprob-20_session-plusneu.png,logs/sub-99/id-1274_gender-F_age-33_rewardprob-64_session-plusneu.png,j
+testing,64_vs_36,logs/sub-99/id-1360_gender-F_age-20_rewardprob-36_session-plusneu.png,logs/sub-99/id-1274_gender-F_age-33_rewardprob-64_session-plusneu.png,j
+testing,36_vs_20,logs/sub-99/id-1291_gender-F_age-24_rewardprob-20_session-plusneu.png,logs/sub-99/id-1360_gender-F_age-20_rewardprob-36_session-plusneu.png,j
