@@ -7,9 +7,9 @@
     <Param name="Experiment info" updates="None" val="{'participant': '99', 'participant_gender': 'F', 'skip_practice': 'False', 'skip_ratings': 'False'}" valType="code"/>
     <Param name="Use version" updates="None" val="" valType="str"/>
     <Param name="Full-screen window" updates="None" val="True" valType="bool"/>
-    <Param name="Window size (pixels)" updates="None" val="[1920, 1080]" valType="code"/>
+    <Param name="Window size (pixels)" updates="None" val="[1440, 900]" valType="code"/>
     <Param name="Screen" updates="None" val="1" valType="num"/>
-    <Param name="Monitor" updates="None" val="test" valType="str"/>
+    <Param name="Monitor" updates="None" val="mbp" valType="str"/>
     <Param name="color" updates="None" val="$[0,0,0]" valType="str"/>
     <Param name="colorSpace" updates="None" val="rgb" valType="str"/>
     <Param name="Units" updates="None" val="deg" valType="str"/>
@@ -710,7 +710,7 @@
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="text" updates="set every repeat" val="In het begin van de taak weet je nog niet goed welke gezichten&amp;#10;de hoogste kans op beloning (het winnen van geld) hebben, maar&amp;#10;het is de bedoeling dat je daar met &quot;trial-and-error&quot; gedurende&amp;#10;de leer-taak achter komt.&amp;#10;&amp;#10;(Druk op een willekeurige knop om verder te gaan.)" valType="str"/>
+        <Param name="text" updates="set every repeat" val="&quot;&quot;&quot;&amp;#10;Je begint met %i euro, maar dit bedrag kan je dus opbouwen&amp;#10;door te leren welke gezichten gekoppeld zijn met een hogere&amp;#10;kans op beloning. Het gemiddelde bedrag dat je verdient tijdens&amp;#10;de twee sessies mag je ook daadwerkelijk mee naar huis nemen&amp;#10;(afgerond op de hele euro)!&amp;#10;&amp;#10;%s&amp;#10;&amp;#10;(Druk op een willekeurige toets om verder te gaan.)&amp;#10;&quot;&quot;&quot; % ($custom_params['RL_params']['start_amount'], $RL_session_notice)" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
         <Param name="letterHeight" updates="constant" val="text_size" valType="code"/>
         <Param name="wrapWidth" updates="constant" val="wrap_width" valType="code"/>
@@ -748,7 +748,7 @@
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="text" updates="set every repeat" val="&quot;&quot;&quot;Tijdens deze taak krijg je telkens twee gezichten&amp;#10;naast elkaar te zien. Je moet daarna het gezicht kiezen&amp;#10;waarvan jij denkt dat het de hoogste kans op beloning heeft&amp;#10;(dit leer je gedurende de taak door &quot;trial-and-error&quot;). &amp;#10;&amp;#10;Om het LINKER gezicht te kiezen, druk je op de F toets.&amp;#10;Om het RECHTER gezicht te kiezen, druk je op de J toets.&amp;#10;&amp;#10;Je hebt 3 seconden om te antwoorden.&amp;#10;&amp;#10;Na je keus krijg je feedback:&amp;#10;&amp;#10;Als je GOED gekozen hebt, dan zie je een groen plus teken (+)&amp;#10;en WIN je %.1f euro.&amp;#10;&amp;#10;Als je FOUT gekozen hebt, dan zie je een rood kruis (x)&amp;#10;en %s&amp;#10;&amp;#10;(Druk op een willekeurige knop om verder te gaan.)&amp;#10;&quot;&quot;&quot; % ($custom_params['RL_params']['win_amount'], $RL_wrong_instruction)" valType="str"/>
+        <Param name="text" updates="set every repeat" val="Tijdens deze taak zie je steeds twee gezichten tegelijkertijd.&amp;#10;Eén van de gezichten is steeds ‘correct’ en de andere ‘incorrect’.&amp;#10;In het begin zul je niet weten welke van de twee gezichten ‘correct’&amp;#10;of ‘incorrect’ is.&amp;#10;&amp;#10;Probeer steeds zo accuraat mogelijk te raden welke van de twee&amp;#10;gezichten ‘correct’ is, door deze met links (&quot;F&quot; toets)&amp;#10;of rechts (&quot;J&quot; toets) te selecteren.&amp;#10;&amp;#10;(Druk op een willekeurige knop om verder te gaan.)" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
         <Param name="letterHeight" updates="constant" val="text_size" valType="code"/>
         <Param name="wrapWidth" updates="constant" val="wrap_width" valType="code"/>
@@ -850,7 +850,7 @@
     <Routine name="welcome_1">
       <CodeComponent name="setup_exp">
         <Param name="name" updates="None" val="setup_exp" valType="code"/>
-        <Param name="Begin Experiment" updates="constant" val="import os&amp;#10;import os.path as op&amp;#10;import pandas as pd&amp;#10;import shutil&amp;#10;import yaml&amp;#10;import sys&amp;#10;from glob import glob&amp;#10;&amp;#10;# Load params&amp;#10;with open('params.yml', 'r') as params:&amp;#10;    custom_params = yaml.load(params)&amp;#10;    text_size = custom_params['text_size']&amp;#10;    wrap_width = custom_params['wrap_width']&amp;#10;    face_size = custom_params['face_size']&amp;#10;    n_trials = int(custom_params['n_trials'])&amp;#10;&amp;#10;# Define variables dependent on subject&amp;#10;subj_info_df = pd.read_csv('subject_info.csv')&amp;#10;sub_nr = expInfo['participant']&amp;#10;this_subj_df = subj_info_df.query('subject_id == @sub_nr')&amp;#10;&amp;#10;RL_order = this_subj_df['RL_order'].values[0]&amp;#10;face_gender = this_subj_df['face_gender'].values[0]&amp;#10;&amp;#10;# Create new subject dir in which to store stims/logs&amp;#10;sub_dir = op.join('logs', 'sub-%s' % sub_nr)&amp;#10;if not op.isdir(sub_dir):&amp;#10;    os.makedirs(sub_dir)&amp;#10;&amp;#10;# Remove existing stuff&amp;#10;existing_imgs = glob(op.join(sub_dir, '*.png'))&amp;#10;existing_csvs = glob(op.join(sub_dir, '*.csv'))&amp;#10;_ = [os.remove(f) for f in existing_imgs]&amp;#10;_ = [os.remove(f) for f in existing_csvs]&amp;#10;&amp;#10;rewards_file = op.join(sub_dir, 'rewards.txt')&amp;#10;if op.isfile(rewards_file):&amp;#10;    os.remove(rewards_file)&amp;#10;else:&amp;#10;    open(rewards_file, 'a').close()&amp;#10;&amp;#10;if sys.platform[:3] == 'win':&amp;#10;    sys.path.append(op.abspath('deps'))&amp;#10;    stims_file = 'stims_windows.csv'&amp;#10;else:&amp;#10;    stims_file = 'stims.csv'" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="import os&amp;#10;import os.path as op&amp;#10;import pandas as pd&amp;#10;import shutil&amp;#10;import yaml&amp;#10;import sys&amp;#10;from glob import glob&amp;#10;&amp;#10;# Load params&amp;#10;with open('params.yml', 'r') as params:&amp;#10;    custom_params = yaml.load(params)&amp;#10;    text_size = custom_params['text_size']&amp;#10;    wrap_width = custom_params['wrap_width']&amp;#10;&amp;#10;    if sys.platform == 'darwin':&amp;#10;        wrap_width = 30&amp;#10;&amp;#10;    face_size = custom_params['face_size']&amp;#10;    n_trials = int(custom_params['n_trials'])&amp;#10;&amp;#10;# Define variables dependent on subject&amp;#10;subj_info_df = pd.read_csv('subject_info.csv')&amp;#10;sub_nr = expInfo['participant']&amp;#10;this_subj_df = subj_info_df.query('subject_id == @sub_nr')&amp;#10;&amp;#10;RL_order = this_subj_df['RL_order'].values[0]&amp;#10;face_gender = this_subj_df['face_gender'].values[0]&amp;#10;&amp;#10;# Create new subject dir in which to store stims/logs&amp;#10;sub_dir = op.join('logs', 'sub-%s' % sub_nr)&amp;#10;if not op.isdir(sub_dir):&amp;#10;    os.makedirs(sub_dir)&amp;#10;&amp;#10;# Remove existing stuff&amp;#10;existing_imgs = glob(op.join(sub_dir, '*.png'))&amp;#10;existing_csvs = glob(op.join(sub_dir, '*.csv'))&amp;#10;_ = [os.remove(f) for f in existing_imgs]&amp;#10;_ = [os.remove(f) for f in existing_csvs]&amp;#10;&amp;#10;rewards_file = op.join(sub_dir, 'rewards.txt')&amp;#10;if op.isfile(rewards_file):&amp;#10;    os.remove(rewards_file)&amp;#10;else:&amp;#10;    open(rewards_file, 'a').close()&amp;#10;&amp;#10;if sys.platform[:3] == 'win':&amp;#10;    sys.path.append(op.abspath('deps'))&amp;#10;    stims_file = 'stims_windows.csv'&amp;#10;else:&amp;#10;    stims_file = 'stims.csv'" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
@@ -939,7 +939,7 @@
       <CodeComponent name="practice_switch">
         <Param name="name" updates="None" val="practice_switch" valType="code"/>
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="if number_str == 'eerste':&amp;#10;    practice_skip_txt = &quot;&quot;&quot;&amp;#10;Om het nog iets moeilijker te maken, krijg je straks&amp;#10;niet één combinatie van 2 gezichten, maar TWEE combinaties&amp;#10;van 2 gezichten! Je moet dus van twee combinaties proberen&amp;#10;te leren welke van de twee het meest &quot;waardevolle&quot; gezicht is!&amp;#10;&amp;#10;Om te checken of je het snapt, ga je dit leer-taakje even oefenen.&amp;#10;Je krijg twee combinaties van gezichten te zien:&amp;#10;&amp;#10;1. Barack Obama vs. Bill Clinton,&amp;#10;2. Donald Trump vs. George Bush&amp;#10;&amp;#10;De oefenfase duurt ongeveer 5 minuutjes. Ter herinnering:&amp;#10;&amp;#10;Om het LINKER gezicht te kiezen, druk op de F toets.&amp;#10;Om het RECHTER gezicht te kiezen, druk op de J toets.&amp;#10;&amp;#10;(Druk op een willekeurige knop om te beginnen met de oefenronde!)&amp;#10;&quot;&quot;&quot;&amp;#10;    practice_reps = 1&amp;#10;else:&amp;#10;    practice_skip_txt = &quot;&quot;&quot;We slaan de oefenronde deze keer over.&amp;#10;&amp;#10;(Druk op een willekeurige toets om verder te gaan.)&quot;&quot;&quot;&amp;#10;    practice_reps = 0&amp;#10;&amp;#10;if expInfo['skip_practice'] == 'True':&amp;#10;    practice_reps = 0" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="if number_str == 'eerste':&amp;#10;    practice_skip_txt = &quot;&quot;&quot;&amp;#10;Om het nog iets moeilijker te maken, krijg je straks&amp;#10;niet één combinatie van 2 gezichten, maar TWEE combinaties&amp;#10;van 2 gezichten! Je moet dus van iedere combinatie proberen&amp;#10;te leren welke van de twee het meest &quot;waardevolle&quot; gezicht is!&amp;#10;&amp;#10;Om te checken of je het snapt, ga je dit leer-taakje even oefenen.&amp;#10;Je krijg twee combinaties van gezichten te zien:&amp;#10;&amp;#10;1. Barack Obama vs. Bill Clinton,&amp;#10;2. Donald Trump vs. George Bush&amp;#10;&amp;#10;De oefenfase duurt ongeveer 5 minuutjes. Ter herinnering:&amp;#10;&amp;#10;Om het LINKER gezicht te kiezen, druk op de F toets.&amp;#10;Om het RECHTER gezicht te kiezen, druk op de J toets.&amp;#10;&amp;#10;(Druk op een willekeurige knop om te beginnen met de oefenronde!)&amp;#10;&quot;&quot;&quot;&amp;#10;    practice_reps = 1&amp;#10;else:&amp;#10;    practice_skip_txt = &quot;&quot;&quot;We slaan de oefenronde deze keer over.&amp;#10;&amp;#10;(Druk op een willekeurige toets om verder te gaan.)&quot;&quot;&quot;&amp;#10;    practice_reps = 0&amp;#10;&amp;#10;if expInfo['skip_practice'] == 'True':&amp;#10;    practice_reps = 0" valType="extendedCode"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
@@ -1508,7 +1508,7 @@
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="text" updates="set every repeat" val="&quot;&quot;&quot;Je begint met %i euro, maar dit bedrag kan je dus opbouwen&amp;#10;door te leren welke gezichten gekoppeld zijn met een hogere&amp;#10;kans op beloning. Het gemiddelde bedrag dat je verdient tijdens&amp;#10;de twee sessies mag je ook daadwerkelijk mee naar huis nemen&amp;#10;(afgerond op de hele euro)!&amp;#10;&amp;#10;%s&amp;#10;&amp;#10;(Druk op een willekeurige toets om verder te gaan.)&amp;#10;&quot;&quot;&quot; % ($custom_params['RL_params']['start_amount'], $RL_session_notice)" valType="str"/>
+        <Param name="text" updates="set every repeat" val="&quot;&quot;&quot;&amp;#10;Na je keuze krijg je direct feedback op je keuze.&amp;#10;Als je keuze 'correct' is, dan zie je een groen plus teken (+)&amp;#10;en WIN je %.1f euro.&amp;#10;&amp;#10;Als je keuze 'incorrect' is, dan zie je een rood kruis (x)&amp;#10;en %s&amp;#10;&amp;#10;(Druk op een willekeurige toets om verder te gaan.)&amp;#10;&quot;&quot;&quot; % ($custom_params['RL_params']['win_amount'], $RL_wrong_instruction)" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
         <Param name="letterHeight" updates="constant" val="text_size" valType="code"/>
         <Param name="wrapWidth" updates="constant" val="wrap_width" valType="code"/>
@@ -2047,6 +2047,44 @@
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
       </CodeComponent>
     </Routine>
+    <Routine name="instruct_RL_2_1">
+      <TextComponent name="instruct_RL_2_txt_4">
+        <Param name="name" updates="None" val="instruct_RL_2_txt_4" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="text" updates="set every repeat" val="Let op! Er bestaan geen absoluut ‘correcte’ antwoorden,&amp;#10;maar sommige gezichten hebben een hogere kans om gevolgd&amp;#10;te worden door een ‘correct’ feedback (groen plus-symbool).&amp;#10;&amp;#10;Probeer steeds het gezicht te selecteren met het hoogste&amp;#10;kans op de 'correct' feedback.&amp;#10;&amp;#10;Je hebt 3 seconden om te kiezen.&amp;#10;&amp;#10;(Druk op een willekeurige knop om verder te gaan.)" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="text_size" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="wrap_width" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+      </TextComponent>
+      <KeyboardComponent name="instruct_RL_2_resp_3">
+        <Param name="name" updates="None" val="instruct_RL_2_resp_3" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="allowedKeys" updates="constant" val="" valType="code"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="store" updates="constant" val="nothing" valType="str"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+    </Routine>
   </Routines>
   <Flow>
     <Routine name="welcome_1"/>
@@ -2095,6 +2133,7 @@
     </LoopInitiator>
     <Routine name="instruct_RL_1"/>
     <Routine name="instruct_RL_2"/>
+    <Routine name="instruct_RL_2_1"/>
     <Routine name="instruct_RL_2_2"/>
     <Routine name="instruct_RL_3"/>
     <Routine name="instruct_RL_5"/>

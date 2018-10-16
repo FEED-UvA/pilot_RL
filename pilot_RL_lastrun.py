@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.90.2),
-    on oktober 15, 2018, at 17:06
+    on Tue Oct 16 11:50:42 2018
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -40,7 +40,7 @@ filename = _thisDir + os.sep + u'logs/sub-%s/sub-%s_events' % (expInfo['particip
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='D:\\pilot_RL\\pilot_RL.psyexp',
+    originPath='/Users/lukas/projects/FEED/pilot_RL/pilot_RL.psyexp',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -53,9 +53,9 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 
 # Setup the Window
 win = visual.Window(
-    size=[1920, 1080], fullscr=True, screen=0,
+    size=[1440, 900], fullscr=True, screen=0,
     allowGUI=True, allowStencil=False,
-    monitor='test', color=[0,0,0], colorSpace='rgb',
+    monitor='mbp', color=[0,0,0], colorSpace='rgb',
     blendMode='avg', useFBO=True,
     units='deg')
 # store frame rate of monitor if we can measure it
@@ -80,6 +80,10 @@ with open('params.yml', 'r') as params:
     custom_params = yaml.load(params)
     text_size = custom_params['text_size']
     wrap_width = custom_params['wrap_width']
+
+    if sys.platform == 'darwin':
+        wrap_width = 30
+
     face_size = custom_params['face_size']
     n_trials = int(custom_params['n_trials'])
 
@@ -257,6 +261,15 @@ instruct_RL_1_txt = visual.TextStim(win=win, name='instruct_RL_1_txt',
 # Initialize components for Routine "instruct_RL_2"
 instruct_RL_2Clock = core.Clock()
 instruct_RL_2_txt_3 = visual.TextStim(win=win, name='instruct_RL_2_txt_3',
+    text='default text',
+    font='Arial',
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
+    color='white', colorSpace='rgb', opacity=1,
+    depth=0.0);
+
+# Initialize components for Routine "instruct_RL_2_1"
+instruct_RL_2_1Clock = core.Clock()
+instruct_RL_2_txt_4 = visual.TextStim(win=win, name='instruct_RL_2_txt_4',
     text='default text',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
@@ -1405,26 +1418,7 @@ for thisSession_loop in session_loop:
     frameN = -1
     continueRoutine = True
     # update component parameters for each repeat
-    instruct_RL_2_txt_3.setText("""Tijdens deze taak krijg je telkens twee gezichten
-naast elkaar te zien. Je moet daarna het gezicht kiezen
-waarvan jij denkt dat het de hoogste kans op beloning heeft
-(dit leer je gedurende de taak door "trial-and-error"). 
-
-Om het LINKER gezicht te kiezen, druk je op de F toets.
-Om het RECHTER gezicht te kiezen, druk je op de J toets.
-
-Je hebt 3 seconden om te antwoorden.
-
-Na je keus krijg je feedback:
-
-Als je GOED gekozen hebt, dan zie je een groen plus teken (+)
-en WIN je %.1f euro.
-
-Als je FOUT gekozen hebt, dan zie je een rood kruis (x)
-en %s
-
-(Druk op een willekeurige knop om verder te gaan.)
-""" % (custom_params['RL_params']['win_amount'], RL_wrong_instruction))
+    instruct_RL_2_txt_3.setText('Tijdens deze taak zie je steeds twee gezichten tegelijkertijd.\nEén van de gezichten is steeds ‘correct’ en de andere ‘incorrect’.\nIn het begin zul je niet weten welke van de twee gezichten ‘correct’\nof ‘incorrect’ is.\n\nProbeer steeds zo accuraat mogelijk te raden welke van de twee\ngezichten ‘correct’ is, door deze met links ("F" toets)\nof rechts ("J" toets) te selecteren.\n\n(Druk op een willekeurige knop om verder te gaan.)')
     instruct_RL_2_resp_2 = event.BuilderKeyResponse()
     # keep track of which components have finished
     instruct_RL_2Components = [instruct_RL_2_txt_3, instruct_RL_2_resp_2]
@@ -1488,22 +1482,92 @@ en %s
     # the Routine "instruct_RL_2" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     
+    # ------Prepare to start Routine "instruct_RL_2_1"-------
+    t = 0
+    instruct_RL_2_1Clock.reset()  # clock
+    frameN = -1
+    continueRoutine = True
+    # update component parameters for each repeat
+    instruct_RL_2_txt_4.setText('Let op! Er bestaan geen absoluut ‘correcte’ antwoorden,\nmaar sommige gezichten hebben een hogere kans om gevolgd\nte worden door een ‘correct’ feedback (groen plus-symbool).\n\nProbeer steeds het gezicht te selecteren met het hoogste\nkans op correct feedback.\n\nJe hebt 3 seconden om te kiezen.\n\n(Druk op een willekeurige knop om verder te gaan.)')
+    instruct_RL_2_resp_3 = event.BuilderKeyResponse()
+    # keep track of which components have finished
+    instruct_RL_2_1Components = [instruct_RL_2_txt_4, instruct_RL_2_resp_3]
+    for thisComponent in instruct_RL_2_1Components:
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    
+    # -------Start Routine "instruct_RL_2_1"-------
+    while continueRoutine:
+        # get current time
+        t = instruct_RL_2_1Clock.getTime()
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *instruct_RL_2_txt_4* updates
+        if t >= 0.0 and instruct_RL_2_txt_4.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            instruct_RL_2_txt_4.tStart = t
+            instruct_RL_2_txt_4.frameNStart = frameN  # exact frame index
+            instruct_RL_2_txt_4.setAutoDraw(True)
+        
+        # *instruct_RL_2_resp_3* updates
+        if t >= 0.0 and instruct_RL_2_resp_3.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            instruct_RL_2_resp_3.tStart = t
+            instruct_RL_2_resp_3.frameNStart = frameN  # exact frame index
+            instruct_RL_2_resp_3.status = STARTED
+            # keyboard checking is just starting
+            event.clearEvents(eventType='keyboard')
+        if instruct_RL_2_resp_3.status == STARTED:
+            theseKeys = event.getKeys()
+            
+            # check for quit:
+            if "escape" in theseKeys:
+                endExpNow = True
+            if len(theseKeys) > 0:  # at least one key was pressed
+                # a response ends the routine
+                continueRoutine = False
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in instruct_RL_2_1Components:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # check for quit (the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # -------Ending Routine "instruct_RL_2_1"-------
+    for thisComponent in instruct_RL_2_1Components:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    # the Routine "instruct_RL_2_1" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
+    
     # ------Prepare to start Routine "instruct_RL_2_2"-------
     t = 0
     instruct_RL_2_2Clock.reset()  # clock
     frameN = -1
     continueRoutine = True
     # update component parameters for each repeat
-    instruct_RL_2_txt.setText("""Je begint met %i euro, maar dit bedrag kan je dus opbouwen
-door te leren welke gezichten gekoppeld zijn met een hogere
-kans op beloning. Het gemiddelde bedrag dat je verdient tijdens
-de twee sessies mag je ook daadwerkelijk mee naar huis nemen
-(afgerond op de hele euro)!
+    instruct_RL_2_txt.setText("""
+Na je keuze krijg je direct feedback op je keuze.
+Als je keuze 'correct' is, dan zie je een groen plus teken (+)
+en WIN je %.1f euro.
 
-%s
+Als je keuze 'incorrect' is, dan zie je een rood kruis (x)
+en %s
 
 (Druk op een willekeurige toets om verder te gaan.)
-""" % (custom_params['RL_params']['start_amount'], RL_session_notice))
+""" % (custom_params['RL_params']['win_amount'], RL_wrong_instruction))
     instruct_RL_2_resp = event.BuilderKeyResponse()
     # keep track of which components have finished
     instruct_RL_2_2Components = [instruct_RL_2_txt, instruct_RL_2_resp]
@@ -1575,7 +1639,17 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
     # update component parameters for each repeat
     if number_str == 'tweede':
         continueRoutine = False
-    instruct_RL_3_txt.setText('In het begin van de taak weet je nog niet goed welke gezichten\nde hoogste kans op beloning (het winnen van geld) hebben, maar\nhet is de bedoeling dat je daar met "trial-and-error" gedurende\nde leer-taak achter komt.\n\n(Druk op een willekeurige knop om verder te gaan.)')
+    instruct_RL_3_txt.setText("""
+Je begint met %i euro, maar dit bedrag kan je dus opbouwen
+door te leren welke gezichten gekoppeld zijn met een hogere
+kans op beloning. Het gemiddelde bedrag dat je verdient tijdens
+de twee sessies mag je ook daadwerkelijk mee naar huis nemen
+(afgerond op de hele euro)!
+
+%s
+
+(Druk op een willekeurige toets om verder te gaan.)
+""" % (custom_params['RL_params']['start_amount'], RL_session_notice))
     instruct_RL_3_resp = event.BuilderKeyResponse()
     # keep track of which components have finished
     instruct_RL_3Components = [instruct_RL_3_txt, instruct_RL_3_resp]
