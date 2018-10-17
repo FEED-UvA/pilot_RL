@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.90.2),
-    on Wed Oct 17 11:49:40 2018
+    on oktober 17, 2018, at 12:32
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -27,7 +27,7 @@ os.chdir(_thisDir)
 
 # Store info about the experiment session
 expName = 'pilot_RL'  # from the Builder filename that created this script
-expInfo = {'participant': '99', 'participant_gender': 'F', 'skip_practice': 'False', 'skip_ratings': 'False'}
+expInfo = {'participant': '', 'participant_gender': '', 'skip_practice': 'False', 'skip_ratings': 'False'}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
 if dlg.OK == False:
     core.quit()  # user pressed cancel
@@ -40,7 +40,7 @@ filename = _thisDir + os.sep + u'logs/sub-%s/sub-%s_events' % (expInfo['particip
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='/Users/lukas/projects/FEED/pilot_RL/pilot_RL.psyexp',
+    originPath='D:\\pilot_RL\\pilot_RL.psyexp',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -53,9 +53,9 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 
 # Setup the Window
 win = visual.Window(
-    size=[1440, 900], fullscr=True, screen=0,
+    size=[1920, 1080], fullscr=True, screen=-1,
     allowGUI=True, allowStencil=False,
-    monitor='mbp', color=[0,0,0], colorSpace='rgb',
+    monitor='test', color=[0,0,0], colorSpace='rgb',
     blendMode='avg', useFBO=True,
     units='deg')
 # store frame rate of monitor if we can measure it
