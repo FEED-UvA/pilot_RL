@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.90.2),
-    on oktober 11, 2018, at 14:11
+    on Tue Oct 16 11:30:10 2018
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -26,8 +26,8 @@ _thisDir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(_thisDir)
 
 # Store info about the experiment session
-expName = 'pilot_RL_drawInformed'  # from the Builder filename that created this script
-expInfo = {'participant': '99', 'skip_ratings': 'True'}
+expName = 'pilot_RL'  # from the Builder filename that created this script
+expInfo = {'participant': '99', 'participant_gender': 'F', 'skip_practice': 'False', 'skip_ratings': 'False'}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
 if dlg.OK == False:
     core.quit()  # user pressed cancel
@@ -53,9 +53,9 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 
 # Setup the Window
 win = visual.Window(
-    size=[1920, 1080], fullscr=True, screen=0,
+    size=[1440, 900], fullscr=True, screen=0,
     allowGUI=True, allowStencil=False,
-    monitor='test', color=[0,0,0], colorSpace='rgb',
+    monitor='mbp', color=[0,0,0], colorSpace='rgb',
     blendMode='avg', useFBO=True,
     units='deg')
 # store frame rate of monitor if we can measure it
@@ -78,6 +78,10 @@ from glob import glob
 # Load params
 with open('params.yml', 'r') as params:
     custom_params = yaml.load(params)
+    text_size = custom_params['text_size']
+    wrap_width = custom_params['wrap_width']
+    face_size = custom_params['face_size']
+    n_trials = int(custom_params['n_trials'])
 
 # Define variables dependent on subject
 subj_info_df = pd.read_csv('subject_info.csv')
@@ -110,40 +114,40 @@ if sys.platform[:3] == 'win':
 else:
     stims_file = 'stims.csv'
 welcome_txt_1 = visual.TextStim(win=win, name='welcome_txt_1',
-    text='Welkom bij dit experiment!\n\nDit experiment gaat over de perceptie van gezichten en\nde invloed van associatief leren.\n\nHet experiment bestaat uit twee fases:\n- een uitgebreide beoordelings-fase\n- een leer-fase met een korte beoordelingsfase (x2)\n\nDe leer-fase (met korte beoordeling daarna) doe je twee keer.',
+    text='Welkom bij dit experiment!\n\nDit experiment gaat over de perceptie van gezichten en de invloed van associatief leren.\n\nHet experiment bestaat uit twee fases:\n- een uitgebreide beoordelings-fase\n- een leer-fase met een korte beoordelingsfase (x2)\n\nDe leer-fase (met korte beoordeling daarna) doe je twee keer.',
     font='Arial',
-    pos=(0, 2.5), height=.4, wrapWidth=None, ori=0, 
+    pos=(0, 5), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-1.0);
 setup_RL_image = visual.ImageStim(
     win=win, name='setup_RL_image',
     image='pilot_RL_setup.png', mask=None,
-    ori=0, pos=(0, -2), size=(14, 3.8),
+    ori=0, pos=(0, -3), size=(28, 7),
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-2.0)
 welcome_txt_1_2 = visual.TextStim(win=win, name='welcome_txt_1_2',
     text='(Druk op een willekeurige knop om door te gaan.)',
     font='Arial',
-    pos=(0, -4), height=0.4, wrapWidth=None, ori=0, 
+    pos=(0, -10), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-3.0);
 
 # Initialize components for Routine "welcome_2"
 welcome_2Clock = core.Clock()
 welcome_txt_2 = visual.TextStim(win=win, name='welcome_txt_2',
-    text="In de eerste fase ga je een aantal gezichten beoordelen\nop een aantal eigenschappen (aantrekkelijkheid, betrouwbaarheid, etc.).\nDit duurt zo'n 10 minuten.\n\n(Druk op een willekeurige toets om verder te gaan.)",
+    text="In de eerste fase ga je gezichten beoordelen\nop een aantal eigenschappen (aantrekkelijkheid, betrouwbaarheid, etc.).\nDit duurt zo'n 10 minuten.\n\n(Druk op een willekeurige toets om verder te gaan.)",
     font='Arial',
-    pos=(0, 0), height=.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
 # Initialize components for Routine "welcome_3"
 welcome_3Clock = core.Clock()
 welcome_txt_3 = visual.TextStim(win=win, name='welcome_txt_3',
-    text='Je zal de gezichten beoordelen op een schaal.\nJe gebruikt de volgende knoppen:\n\n- F: pointer naar LINKS\n- J: pointer naar RECHTS\n- spatie: keuze bevestigen\n\nDe pointer begint vaak in het midden, maar kan ook aan\nde linkerkant beginnen. Dit hangt af van de specifieke\nvraag.\n\nEr is geen tijdsdruk.\n\n(Druk op een willekeurige toets om een voorbeeld te zien.)',
+    text='Je zal de gezichten beoordelen op een schaal.\nJe gebruikt de volgende knoppen:\n\n- F: pointer naar LINKS\n- J: pointer naar RECHTS\n- spatie: keuze bevestigen\n\nEr is geen tijdsdruk.\n\n(Druk op een willekeurige toets om een voorbeeld te zien.)',
     font='Arial',
-    pos=(0, 0), height=.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
@@ -152,14 +156,14 @@ example_scaleClock = core.Clock()
 practice_image = visual.ImageStim(
     win=win, name='practice_image',
     image='stims/practice_stims/trump.jpg', mask=None,
-    ori=0, pos=(0, 0.5), size=(4, 4),
+    ori=0, pos=(0, 2), size=face_size,
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=0.0)
 example_scale_hint = visual.TextStim(win=win, name='example_scale_hint',
     text='Dit is om te "oefenen"!\n\n(F = links, J = rechts, spatie = bevestig)\n',
     font='Arial',
-    pos=(0, 3), height=0.3, wrapWidth=None, ori=0, 
+    pos=(0, 10), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-1.0);
 example_scale_1 = visual.RatingScale(win=win, name='example_scale_1', leftKeys=['f'],
@@ -182,7 +186,7 @@ welcome_4Clock = core.Clock()
 welcome_txt_4 = visual.TextStim(win=win, name='welcome_txt_4',
     text='Als de beoordelings-fase duidelijk is,\ndan kunnen we beginnen.\n\n(Druk op een knop om de eerste sessie te beginnen!)',
     font='Arial',
-    pos=(0, 0), height=.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
@@ -191,27 +195,27 @@ pre_rating_instructClock = core.Clock()
 rating_df = pd.read_csv(stims_file, index_col='stim_file')
 
 pre_rating_instruct_common = visual.TextStim(win=win, name='pre_rating_instruct_common',
-    text='Bij de gezichten die straks in beeld komen moet je\nde volgende vraag beantwoorden:',
+    text='Bij de gezichten die straks in beeld komen\nmoet je de volgende vraag beantwoorden:',
     font='Arial',
-    pos=(0, 2), height=.4, wrapWidth=None, ori=0, 
+    pos=(0, 8), height=(text_size + 0.5), wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-1.0);
 pre_rating_instruct_txt = visual.TextStim(win=win, name='pre_rating_instruct_txt',
     text='default text',
     font='Arial',
-    pos=(0, 0), height=.5, wrapWidth=None, ori=0, 
+    pos=(0, 1), height=(text_size + 0.5), wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-2.0);
-rating_press_to_continue = visual.TextStim(win=win, name='rating_press_to_continue',
+question_details_txt = visual.TextStim(win=win, name='question_details_txt',
     text='default text',
     font='Arial',
-    pos=(0, -2), height=.4, wrapWidth=None, ori=0, 
+    pos=(0, -3), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-3.0);
 click_to_continue = visual.TextStim(win=win, name='click_to_continue',
     text='(Als de vraag duidelijk is, druk dan op een willekeurige toets om te beginnen.)',
     font='Arial',
-    pos=(0, -2.5), height=0.3, wrapWidth=None, ori=0, 
+    pos=(0, -8), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-4.0);
 
@@ -220,7 +224,7 @@ pre_ratingClock = core.Clock()
 pre_rating_img = visual.ImageStim(
     win=win, name='pre_rating_img',
     image='sin', mask=None,
-    ori=0, pos=(0, 1), size=(7.5, 10),
+    ori=0, pos=(0, 1), size=face_size,
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=0.0)
@@ -232,7 +236,7 @@ pause_ratingClock = core.Clock()
 pause_rating_text = visual.TextStim(win=win, name='pause_rating_text',
     text='Als je wilt, kan je nu even pauze nemen.\n\n(Om door te gaan, druk op een willekeurige toets.)\n',
     font='Arial',
-    pos=(0, 0), height=0.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
@@ -240,22 +244,13 @@ pause_rating_text = visual.TextStim(win=win, name='pause_rating_text',
 select_facesClock = core.Clock()
 
 
-# Initialize components for Routine "begin_session"
-begin_sessionClock = core.Clock()
-begin_session_txt = visual.TextStim(win=win, name='begin_session_txt',
-    text='default text',
-    font='Arial',
-    pos=(0, 0), height=0.4, wrapWidth=None, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
-    depth=0.0);
-
 # Initialize components for Routine "instruct_RL_1"
 instruct_RL_1Clock = core.Clock()
 
 instruct_RL_1_txt = visual.TextStim(win=win, name='instruct_RL_1_txt',
     text='default text',
     font='Arial',
-    pos=(0, 0), height=0.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-1.0);
 
@@ -264,7 +259,7 @@ instruct_RL_2Clock = core.Clock()
 instruct_RL_2_txt_3 = visual.TextStim(win=win, name='instruct_RL_2_txt_3',
     text='default text',
     font='Arial',
-    pos=(0, 0), height=0.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
@@ -273,18 +268,19 @@ instruct_RL_2_2Clock = core.Clock()
 instruct_RL_2_txt = visual.TextStim(win=win, name='instruct_RL_2_txt',
     text='default text',
     font='Arial',
-    pos=(0, 0), height=0.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
 # Initialize components for Routine "instruct_RL_3"
 instruct_RL_3Clock = core.Clock()
+
 instruct_RL_3_txt = visual.TextStim(win=win, name='instruct_RL_3_txt',
     text='default text',
     font='Arial',
-    pos=(0, 0), height=0.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
-    depth=0.0);
+    depth=-1.0);
 
 # Initialize components for Routine "instruct_RL_5"
 instruct_RL_5Clock = core.Clock()
@@ -292,20 +288,19 @@ instruct_RL_5Clock = core.Clock()
 instruct_RL_5_txt = visual.TextStim(win=win, name='instruct_RL_5_txt',
     text='default text',
     font='Arial',
-    pos=(0, 0), height=0.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-1.0);
 
 # Initialize components for Routine "pre_fix"
 pre_fixClock = core.Clock()
 
-pre_fix_thingie_2 = visual.Polygon(
-    win=win, name='pre_fix_thingie_2',
-    edges=100, size=(0.1, 0.1),
-    ori=0, pos=(0.0, 0.0),
-    lineWidth=0.1, lineColor=[1,1,1], lineColorSpace='rgb',
-    fillColor=[1,1,1], fillColorSpace='rgb',
-    opacity=1, depth=-1.0, interpolate=True)
+pre_fix_icon = visual.GratingStim(
+    win=win, name='pre_fix_icon',
+    tex='sin', mask='raisedCos',
+    ori=0, pos=(0,0), size=(0.3, 0.3), sf=0, phase=0.0,
+    color=[1.000,1.000,1.000], colorSpace='rgb', opacity=1,blendmode='avg',
+    texRes=512, interpolate=True, depth=-1.0)
 
 # Initialize components for Routine "practice_RL_trial"
 practice_RL_trialClock = core.Clock()
@@ -316,30 +311,29 @@ feedback_sign_opacity = 0
 practice_left_face = visual.ImageStim(
     win=win, name='practice_left_face',
     image='sin', mask=None,
-    ori=0, pos=(-4, 0), size=(5.5, 5.5),
+    ori=0, pos=(-5, 0), size=(7, 7),
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-1.0)
 practice_right_face = visual.ImageStim(
     win=win, name='practice_right_face',
     image='sin', mask=None,
-    ori=0, pos=(4, 0), size=(5.5, 5.5),
+    ori=0, pos=(5, 0), size=(7, 7),
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-2.0)
 practice_response_prompt = visual.TextStim(win=win, name='practice_response_prompt',
-    text='Kies links ("f") of rechts ("j").\nJe hebt 2 seconden om te antwoorden!',
+    text='Kies links ("f") of rechts ("j").\nJe hebt 3 seconden om te antwoorden!',
     font='Arial',
-    pos=(0, -4), height=.3, wrapWidth=None, ori=0, 
+    pos=(0, -6), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-3.0);
-fix_practice = visual.Polygon(
+fix_practice = visual.GratingStim(
     win=win, name='fix_practice',
-    edges=100, size=(0.1, 0.1),
-    ori=0, pos=(0, 0),
-    lineWidth=.1, lineColor=[1,1,1], lineColorSpace='rgb',
-    fillColor=[1,1,1], fillColorSpace='rgb',
-    opacity=1, depth=-5.0, interpolate=True)
+    tex='sin', mask='raisedCos',
+    ori=0, pos=(0, 0), size=(0.3, 0.3), sf=0, phase=0.0,
+    color=[1,1,1], colorSpace='rgb', opacity=1,blendmode='avg',
+    texRes=512, interpolate=True, depth=-5.0)
 practice_money = custom_params['RL_params']['start_amount']
 
 # Initialize components for Routine "practice_RL_feedback"
@@ -354,7 +348,7 @@ practice_feedback_sign = visual.ShapeStim(
 practice_feedback_written_txt = visual.TextStim(win=win, name='practice_feedback_written_txt',
     text='default text',
     font='Arial',
-    pos=(0, -1), height=.4, wrapWidth=None, ori=0, 
+    pos=(0, -1), height=text_size, wrapWidth=wrap_width, ori=0, 
     color=1.0, colorSpace='rgb', opacity=1,
     depth=-1.0);
 
@@ -365,7 +359,7 @@ begin_real_RLClock = core.Clock()
 begin_real_RL_txt = visual.TextStim(win=win, name='begin_real_RL_txt',
     text='default text',
     font='Arial',
-    pos=(0, 0), height=0.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-2.0);
 
@@ -375,19 +369,18 @@ begin_real_RL2Clock = core.Clock()
 begin_real_RL_txt_2 = visual.TextStim(win=win, name='begin_real_RL_txt_2',
     text='default text',
     font='Arial',
-    pos=(0, 0), height=0.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-1.0);
 
 # Initialize components for Routine "pre_fix_2"
 pre_fix_2Clock = core.Clock()
-pre_fix_thingie = visual.Polygon(
-    win=win, name='pre_fix_thingie',
-    edges=100, size=(0.1, 0.1),
-    ori=0, pos=(0.0, 0.0),
-    lineWidth=0.1, lineColor=[1,1,1], lineColorSpace='rgb',
-    fillColor=[1,1,1], fillColorSpace='rgb',
-    opacity=1, depth=0.0, interpolate=True)
+pre_fix_icon2 = visual.GratingStim(
+    win=win, name='pre_fix_icon2',
+    tex='sin', mask='raisedCos',
+    ori=0, pos=(0, 0), size=(0.3, 0.3), sf=0, phase=0.0,
+    color=[1,1,1], colorSpace='rgb', opacity=1,blendmode='avg',
+    texRes=512, interpolate=True, depth=0.0)
 
 # Initialize components for Routine "real_RL_trial"
 real_RL_trialClock = core.Clock()
@@ -399,24 +392,23 @@ counter_RL = 1
 real_left_face = visual.ImageStim(
     win=win, name='real_left_face',
     image='sin', mask=None,
-    ori=0, pos=(-4, 0), size=(7.5, 10),
+    ori=0, pos=(-5, 0), size=face_size,
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-1.0)
 real_right_face = visual.ImageStim(
     win=win, name='real_right_face',
     image='sin', mask=None,
-    ori=0, pos=(4, 0), size=(7.5, 10),
+    ori=0, pos=(5, 0), size=face_size,
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-2.0)
-fix_real = visual.Polygon(
+fix_real = visual.GratingStim(
     win=win, name='fix_real',
-    edges=100, size=(0.1, 0.1),
-    ori=0, pos=(0, 0),
-    lineWidth=.1, lineColor=[1,1,1], lineColorSpace='rgb',
-    fillColor=[1,1,1], fillColorSpace='rgb',
-    opacity=1, depth=-4.0, interpolate=True)
+    tex='sin', mask='raisedCos',
+    ori=0, pos=(0, 0), size=(0.3, 0.3), sf=None, phase=0.0,
+    color=[1,1,1], colorSpace='rgb', opacity=1,blendmode='avg',
+    texRes=512, interpolate=True, depth=-4.0)
 real_money = dict(plusmin=custom_params['RL_params']['start_amount'],
                   plusneu=custom_params['RL_params']['start_amount'])
 
@@ -432,7 +424,7 @@ real_feedback_sign = visual.ShapeStim(
 real_feedback_written_txt = visual.TextStim(win=win, name='real_feedback_written_txt',
     text='default text',
     font='Arial',
-    pos=(0, -1), height=.4, wrapWidth=None, ori=0, 
+    pos=(0, -1), height=text_size, wrapWidth=wrap_width, ori=0, 
     color=1.0, colorSpace='rgb', opacity=1,
     depth=-1.0);
 
@@ -442,7 +434,7 @@ pause_RLClock = core.Clock()
 pause_txt = visual.TextStim(win=win, name='pause_txt',
     text='default text',
     font='Arial',
-    pos=(0, 0), height=0.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-1.0);
 
@@ -451,7 +443,7 @@ overview_moneyClock = core.Clock()
 overview_money_txt = visual.TextStim(win=win, name='overview_money_txt',
     text='default text',
     font='Arial',
-    pos=(0, 0), height=0.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
@@ -461,7 +453,7 @@ post_rating_introClock = core.Clock()
 post_rating_intro_txt = visual.TextStim(win=win, name='post_rating_intro_txt',
     text='default text',
     font='Arial',
-    pos=(0, 0), height=0.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
@@ -470,27 +462,27 @@ post_rating_instructClock = core.Clock()
 
 
 post_rating_instruct_common = visual.TextStim(win=win, name='post_rating_instruct_common',
-    text='Bij de gezichten die straks in beeld komen moet je\nde volgende vraag beantwoorden:',
+    text='Bij de gezichten die straks in beeld komen\nmoet je de volgende vraag beantwoorden:',
     font='Arial',
-    pos=(0, 2), height=.4, wrapWidth=None, ori=0, 
+    pos=(0, 8), height=(text_size + 0.5), wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-1.0);
 pre_rating_instruct_txt_2 = visual.TextStim(win=win, name='pre_rating_instruct_txt_2',
     text='default text',
     font='Arial',
-    pos=(0, 0), height=.5, wrapWidth=None, ori=0, 
+    pos=(0, 1), height=(text_size + 0.5), wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-2.0);
 rating_press_to_continue_2 = visual.TextStim(win=win, name='rating_press_to_continue_2',
     text='default text',
     font='Arial',
-    pos=(0, -2), height=.4, wrapWidth=None, ori=0, 
+    pos=(0, -3), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-3.0);
 click_to_continue_2 = visual.TextStim(win=win, name='click_to_continue_2',
     text='(Als de vraag duidelijk is, druk dan op een willekeurige toets om te beginnen.)',
     font='Arial',
-    pos=(0, -2.5), height=0.3, wrapWidth=None, ori=0, 
+    pos=(0, -8), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-4.0);
 
@@ -499,7 +491,7 @@ post_ratingClock = core.Clock()
 post_rating_img = visual.ImageStim(
     win=win, name='post_rating_img',
     image='sin', mask=None,
-    ori=0, pos=(0, 1), size=(7.5, 10),
+    ori=0, pos=(0, 1), size=face_size,
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=0.0)
@@ -510,7 +502,7 @@ end_of_sessionClock = core.Clock()
 end_of_session_txt = visual.TextStim(win=win, name='end_of_session_txt',
     text='default text',
     font='Arial',
-    pos=(0, 0), height=0.4, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
@@ -519,7 +511,7 @@ thanksClock = core.Clock()
 thanks_txt = visual.TextStim(win=win, name='thanks_txt',
     text='Bedankt voor je deelname!\nDe taak zal vanzelf afsluiten.',
     font='Arial',
-    pos=(0, 0), height=.5, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=text_size, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
@@ -886,7 +878,7 @@ for thisComponent in welcome_4Components:
 routineTimer.reset()
 
 # set up handler to look after randomisation of conditions etc
-pre_rating_scales_loop = data.TrialHandler(nReps=(0 if expInfo['skip_ratings'] else 1), method='random', 
+pre_rating_scales_loop = data.TrialHandler(nReps=(0 if expInfo['skip_ratings'] == 'True' else 1), method='random', 
     extraInfo=expInfo, originPath=-1,
     trialList=data.importConditions('ratings.csv'),
     seed=None, name='pre_rating_scales_loop')
@@ -910,18 +902,16 @@ for thisPre_rating_scales_loop in pre_rating_scales_loop:
     frameN = -1
     continueRoutine = True
     # update component parameters for each repeat
-    print('test')
     from custom_rating_scales import construct_rating_scale
-    pre_rating_scale = construct_rating_scale(rating_attribute, win=win)
-    print('test2')
+    pre_rating_scale = construct_rating_scale(rating_attribute, low_high=[rating_low, rating_high], win=win)
     
-    if not question_details:
-        question_details = ''
-    pre_rating_instruct_txt.setText(question)
-    rating_press_to_continue.setText(question_details)
+    if not rating_question_details:
+        rating_question_details = ''
+    pre_rating_instruct_txt.setText(rating_question)
+    question_details_txt.setText(rating_question_details)
     pre_rating_instruct_continue = event.BuilderKeyResponse()
     # keep track of which components have finished
-    pre_rating_instructComponents = [pre_rating_instruct_common, pre_rating_instruct_txt, rating_press_to_continue, click_to_continue, pre_rating_instruct_continue]
+    pre_rating_instructComponents = [pre_rating_instruct_common, pre_rating_instruct_txt, question_details_txt, click_to_continue, pre_rating_instruct_continue]
     for thisComponent in pre_rating_instructComponents:
         if hasattr(thisComponent, 'status'):
             thisComponent.status = NOT_STARTED
@@ -948,12 +938,12 @@ for thisPre_rating_scales_loop in pre_rating_scales_loop:
             pre_rating_instruct_txt.frameNStart = frameN  # exact frame index
             pre_rating_instruct_txt.setAutoDraw(True)
         
-        # *rating_press_to_continue* updates
-        if t >= 0.0 and rating_press_to_continue.status == NOT_STARTED:
+        # *question_details_txt* updates
+        if t >= 0.0 and question_details_txt.status == NOT_STARTED:
             # keep track of start time/frame for later
-            rating_press_to_continue.tStart = t
-            rating_press_to_continue.frameNStart = frameN  # exact frame index
-            rating_press_to_continue.setAutoDraw(True)
+            question_details_txt.tStart = t
+            question_details_txt.frameNStart = frameN  # exact frame index
+            question_details_txt.setAutoDraw(True)
         
         # *click_to_continue* updates
         if t >= 0.0 and click_to_continue.status == NOT_STARTED:
@@ -1163,7 +1153,7 @@ for thisPre_rating_scales_loop in pre_rating_scales_loop:
     routineTimer.reset()
     thisExp.nextEntry()
     
-# completed (0 if expInfo['skip_ratings'] else 1) repeats of 'pre_rating_scales_loop'
+# completed (0 if expInfo['skip_ratings'] == 'True' else 1) repeats of 'pre_rating_scales_loop'
 
 
 # ------Prepare to start Routine "select_faces"-------
@@ -1183,12 +1173,12 @@ from face_selection import select_stim_based_on_similarity
 rating_df.to_csv(op.join(sub_dir, 'sub-%s_face-ratings.csv' % sub_nr))
 
 if expInfo['skip_ratings']:
+    print("Trying to find existing ratings for subject %s" % sub_nr)
     rating_df = pd.read_csv(op.join('test_data', 'sub-%s_face-ratings.csv' % sub_nr))
 
     if sys.platform[:3] == 'win':
-        rating_df = rating_df.replace('/', '\\')
+        rating_df.stim_file = rating_df.stim_file.str.replace('/', '\\')
 
-print(rating_df)
 selected_pairs = select_stim_based_on_similarity(rating_df, face_gender=face_gender,
                                                  distance_metric=custom_params['distance_metric'])
 reward_prob = [[['80', '20'], ['64', '36']], [['80', '20'], ['64', '36']]]
@@ -1319,82 +1309,6 @@ for thisSession_loop in session_loop:
         for paramName in thisSession_loop:
             exec('{} = thisSession_loop[paramName]'.format(paramName))
     
-    # ------Prepare to start Routine "begin_session"-------
-    t = 0
-    begin_sessionClock.reset()  # clock
-    frameN = -1
-    continueRoutine = True
-    # update component parameters for each repeat
-    begin_session_txt.setText("""Dit is het begin van de %s sessie!
-
-Eerst zal je een aantal gezichten beoordelen op een aantal eigenschappen.
-Voor elke beoordeling van een nieuwe eigenschap zullen we de beoordeling
-in meer detail uitleggen.
-
-(Druk op een willekeurige toets om te beginnen met fase 1!)""" % number_str)
-    instruct_cont = event.BuilderKeyResponse()
-    # keep track of which components have finished
-    begin_sessionComponents = [begin_session_txt, instruct_cont]
-    for thisComponent in begin_sessionComponents:
-        if hasattr(thisComponent, 'status'):
-            thisComponent.status = NOT_STARTED
-    
-    # -------Start Routine "begin_session"-------
-    while continueRoutine:
-        # get current time
-        t = begin_sessionClock.getTime()
-        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-        # update/draw components on each frame
-        
-        # *begin_session_txt* updates
-        if t >= 0 and begin_session_txt.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            begin_session_txt.tStart = t
-            begin_session_txt.frameNStart = frameN  # exact frame index
-            begin_session_txt.setAutoDraw(True)
-        
-        # *instruct_cont* updates
-        if t >= 0 and instruct_cont.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            instruct_cont.tStart = t
-            instruct_cont.frameNStart = frameN  # exact frame index
-            instruct_cont.status = STARTED
-            # keyboard checking is just starting
-            event.clearEvents(eventType='keyboard')
-        if instruct_cont.status == STARTED:
-            theseKeys = event.getKeys()
-            
-            # check for quit:
-            if "escape" in theseKeys:
-                endExpNow = True
-            if len(theseKeys) > 0:  # at least one key was pressed
-                # a response ends the routine
-                continueRoutine = False
-        
-        # check if all components have finished
-        if not continueRoutine:  # a component has requested a forced-end of Routine
-            break
-        continueRoutine = False  # will revert to True if at least one component still running
-        for thisComponent in begin_sessionComponents:
-            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                continueRoutine = True
-                break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
-        
-        # refresh the screen
-        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-            win.flip()
-    
-    # -------Ending Routine "begin_session"-------
-    for thisComponent in begin_sessionComponents:
-        if hasattr(thisComponent, "setAutoDraw"):
-            thisComponent.setAutoDraw(False)
-    # the Routine "begin_session" was not non-slip safe, so reset the non-slip timer
-    routineTimer.reset()
-    
     # ------Prepare to start Routine "instruct_RL_1"-------
     t = 0
     instruct_RL_1Clock.reset()  # clock
@@ -1403,10 +1317,9 @@ in meer detail uitleggen.
     # update component parameters for each repeat
     if number_str == 'eerste':
         practice_skip_txt_1 = """
-    Dit was het einde van fase één.
+    Dit is het begin van fase 2, waarin je een leer-taakje gaat doen.
     
-    In fase twee ga je een leer-taak doen.
-    Die zullen we uitgebreid uitleggen en 
+    Deze taak zullen we uitgebreid uitleggen en 
     die zal je eerst even oefenen voordat je
     gaat beginnen aan de echte taak.
     
@@ -1414,9 +1327,7 @@ in meer detail uitleggen.
     """
     else:
         practice_skip_txt_1 = """
-    Dit was het einde van fase één.
-    
-    In fase twee ga je wederom een leer-taak doen,
+    Nu ga je wederom een leer-taakje doen,
     maar net iets anders dan in de eerste sessie.
     
     (Druk op een willekeurig toets om verder te gaan.)
@@ -1587,7 +1498,7 @@ en %s
 door te leren welke gezichten gekoppeld zijn met een hogere
 kans op beloning. Het gemiddelde bedrag dat je verdient tijdens
 de twee sessies mag je ook daadwerkelijk mee naar huis nemen
-(tot maximaal 12 euro)!
+(afgerond op de hele euro)!
 
 %s
 
@@ -1662,6 +1573,8 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
     frameN = -1
     continueRoutine = True
     # update component parameters for each repeat
+    if number_str == 'tweede':
+        continueRoutine = False
     instruct_RL_3_txt.setText('In het begin van de taak weet je nog niet goed welke gezichten\nde hoogste kans op beloning (het winnen van geld) hebben, maar\nhet is de bedoeling dat je daar met "trial-and-error" gedurende\nde leer-taak achter komt.\n\n(Druk op een willekeurige knop om verder te gaan.)')
     instruct_RL_3_resp = event.BuilderKeyResponse()
     # keep track of which components have finished
@@ -1676,6 +1589,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         t = instruct_RL_3Clock.getTime()
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
+        
         
         # *instruct_RL_3_txt* updates
         if t >= 0.0 and instruct_RL_3_txt.status == NOT_STARTED:
@@ -1723,6 +1637,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
     for thisComponent in instruct_RL_3Components:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
+    
     # the Routine "instruct_RL_3" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     
@@ -1757,6 +1672,9 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         practice_skip_txt = """We slaan de oefenronde deze keer over.
     
     (Druk op een willekeurige toets om verder te gaan.)"""
+        practice_reps = 0
+    
+    if expInfo['skip_practice'] == 'True':
         practice_reps = 0
     instruct_RL_5_txt.setText(practice_skip_txt)
     instruct_RL_5_resp = event.BuilderKeyResponse()
@@ -1834,7 +1752,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
     if number_str == 'tweede':
         continueRoutine = False
     # keep track of which components have finished
-    pre_fixComponents = [pre_fix_thingie_2]
+    pre_fixComponents = [pre_fix_icon]
     for thisComponent in pre_fixComponents:
         if hasattr(thisComponent, 'status'):
             thisComponent.status = NOT_STARTED
@@ -1847,15 +1765,15 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         # update/draw components on each frame
         
         
-        # *pre_fix_thingie_2* updates
-        if t >= 0.0 and pre_fix_thingie_2.status == NOT_STARTED:
+        # *pre_fix_icon* updates
+        if t >= 0.0 and pre_fix_icon.status == NOT_STARTED:
             # keep track of start time/frame for later
-            pre_fix_thingie_2.tStart = t
-            pre_fix_thingie_2.frameNStart = frameN  # exact frame index
-            pre_fix_thingie_2.setAutoDraw(True)
+            pre_fix_icon.tStart = t
+            pre_fix_icon.frameNStart = frameN  # exact frame index
+            pre_fix_icon.setAutoDraw(True)
         frameRemains = 0.0 + 2.0- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if pre_fix_thingie_2.status == STARTED and t >= frameRemains:
-            pre_fix_thingie_2.setAutoDraw(False)
+        if pre_fix_icon.status == STARTED and t >= frameRemains:
+            pre_fix_icon.setAutoDraw(False)
         
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
@@ -1904,7 +1822,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         practice_RL_trialClock.reset()  # clock
         frameN = -1
         continueRoutine = True
-        routineTimer.add(3.000000)
+        routineTimer.add(4.000000)
         # update component parameters for each repeat
         
         practice_left_face.setImage(left_face)
@@ -1926,37 +1844,37 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             
             
             # *practice_left_face* updates
-            if t >= 0 and practice_left_face.status == NOT_STARTED:
+            if t >= 1 and practice_left_face.status == NOT_STARTED:
                 # keep track of start time/frame for later
                 practice_left_face.tStart = t
                 practice_left_face.frameNStart = frameN  # exact frame index
                 practice_left_face.setAutoDraw(True)
-            frameRemains = 0 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
+            frameRemains = 1 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
             if practice_left_face.status == STARTED and t >= frameRemains:
                 practice_left_face.setAutoDraw(False)
             
             # *practice_right_face* updates
-            if t >= 0 and practice_right_face.status == NOT_STARTED:
+            if t >= 1 and practice_right_face.status == NOT_STARTED:
                 # keep track of start time/frame for later
                 practice_right_face.tStart = t
                 practice_right_face.frameNStart = frameN  # exact frame index
                 practice_right_face.setAutoDraw(True)
-            frameRemains = 0 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
+            frameRemains = 1 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
             if practice_right_face.status == STARTED and t >= frameRemains:
                 practice_right_face.setAutoDraw(False)
             
             # *practice_response_prompt* updates
-            if t >= 0 and practice_response_prompt.status == NOT_STARTED:
+            if t >= 1 and practice_response_prompt.status == NOT_STARTED:
                 # keep track of start time/frame for later
                 practice_response_prompt.tStart = t
                 practice_response_prompt.frameNStart = frameN  # exact frame index
                 practice_response_prompt.setAutoDraw(True)
-            frameRemains = 0 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
+            frameRemains = 1 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
             if practice_response_prompt.status == STARTED and t >= frameRemains:
                 practice_response_prompt.setAutoDraw(False)
             
             # *practice_response* updates
-            if t >= 0 and practice_response.status == NOT_STARTED:
+            if t >= 1 and practice_response.status == NOT_STARTED:
                 # keep track of start time/frame for later
                 practice_response.tStart = t
                 practice_response.frameNStart = frameN  # exact frame index
@@ -1964,7 +1882,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                 # keyboard checking is just starting
                 win.callOnFlip(practice_response.clock.reset)  # t=0 on next screen flip
                 event.clearEvents(eventType='keyboard')
-            frameRemains = 0 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
+            frameRemains = 1 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
             if practice_response.status == STARTED and t >= frameRemains:
                 practice_response.status = STOPPED
             if practice_response.status == STARTED:
@@ -1985,12 +1903,12 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                     continueRoutine = False
             
             # *fix_practice* updates
-            if t >= 0.0 and fix_practice.status == NOT_STARTED:
+            if t >= 0 and fix_practice.status == NOT_STARTED:
                 # keep track of start time/frame for later
                 fix_practice.tStart = t
                 fix_practice.frameNStart = frameN  # exact frame index
                 fix_practice.setAutoDraw(True)
-            frameRemains = 0.0 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
+            frameRemains = 0 + 4- win.monitorFramePeriod * 0.75  # most of one frame period left
             if fix_practice.status == STARTED and t >= frameRemains:
                 fix_practice.setAutoDraw(False)
             
@@ -2052,7 +1970,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             else:
                 if session_name == 'plusneu':
                     practice_money += 0
-                elif session_name == 'plusneg':
+                elif session_name == 'plusmin':
                     practice_money -= custom_params['RL_params']['lose_amount']
             
         
@@ -2157,7 +2075,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
     Ter herinnering: het enige verschil met de eerste sessie is
     dat je deze keer %s bij een fout antwoord!
     
-    (Druk op een willekeurige toets om verder te gaan.)
+    (Druk op een willekeurige toets om te beginnen met de taak!)
     """ % tmp_txt
     with open(rewards_file, 'a') as rewards_file_f:
         rewards_file_f.write('Practice rewards: %.1f\n' % practice_money)
@@ -2255,9 +2173,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
     (Druk op een toets om te beginnen met de echte taak.)
     """
     else:
-        practice_skip_txt_4 = """
-    (Druk op een willekeurige toets om te beginnen met de echte taak.)
-    """
+        continueRoutine = False
     begin_real_RL_txt_2.setText(practice_skip_txt_4)
     begin_real_RL_continue_2 = event.BuilderKeyResponse()
     # keep track of which components have finished
@@ -2332,7 +2248,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
     routineTimer.add(2.000000)
     # update component parameters for each repeat
     # keep track of which components have finished
-    pre_fix_2Components = [pre_fix_thingie]
+    pre_fix_2Components = [pre_fix_icon2]
     for thisComponent in pre_fix_2Components:
         if hasattr(thisComponent, 'status'):
             thisComponent.status = NOT_STARTED
@@ -2344,15 +2260,15 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
         
-        # *pre_fix_thingie* updates
-        if t >= 0.0 and pre_fix_thingie.status == NOT_STARTED:
+        # *pre_fix_icon2* updates
+        if t >= 0.0 and pre_fix_icon2.status == NOT_STARTED:
             # keep track of start time/frame for later
-            pre_fix_thingie.tStart = t
-            pre_fix_thingie.frameNStart = frameN  # exact frame index
-            pre_fix_thingie.setAutoDraw(True)
-        frameRemains = 0.0 + 2.0- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if pre_fix_thingie.status == STARTED and t >= frameRemains:
-            pre_fix_thingie.setAutoDraw(False)
+            pre_fix_icon2.tStart = t
+            pre_fix_icon2.frameNStart = frameN  # exact frame index
+            pre_fix_icon2.setAutoDraw(True)
+        frameRemains = 0.0 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if pre_fix_icon2.status == STARTED and t >= frameRemains:
+            pre_fix_icon2.setAutoDraw(False)
         
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
@@ -2377,7 +2293,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             thisComponent.setAutoDraw(False)
     
     # set up handler to look after randomisation of conditions etc
-    real_trials = data.TrialHandler(nReps=1, method='random', 
+    real_trials = data.TrialHandler(nReps=(int(n_trials / 50)), method='random', 
         extraInfo=expInfo, originPath=-1,
         trialList=data.importConditions(trial_csv),
         seed=None, name='real_trials')
@@ -2400,7 +2316,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         real_RL_trialClock.reset()  # clock
         frameN = -1
         continueRoutine = True
-        routineTimer.add(3.000000)
+        routineTimer.add(4.000000)
         # update component parameters for each repeat
         
         real_left_face.setImage(left_face)
@@ -2422,27 +2338,27 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             
             
             # *real_left_face* updates
-            if t >= 0 and real_left_face.status == NOT_STARTED:
+            if t >= 1 and real_left_face.status == NOT_STARTED:
                 # keep track of start time/frame for later
                 real_left_face.tStart = t
                 real_left_face.frameNStart = frameN  # exact frame index
                 real_left_face.setAutoDraw(True)
-            frameRemains = 0 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
+            frameRemains = 1 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
             if real_left_face.status == STARTED and t >= frameRemains:
                 real_left_face.setAutoDraw(False)
             
             # *real_right_face* updates
-            if t >= 0 and real_right_face.status == NOT_STARTED:
+            if t >= 1 and real_right_face.status == NOT_STARTED:
                 # keep track of start time/frame for later
                 real_right_face.tStart = t
                 real_right_face.frameNStart = frameN  # exact frame index
                 real_right_face.setAutoDraw(True)
-            frameRemains = 0 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
+            frameRemains = 1 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
             if real_right_face.status == STARTED and t >= frameRemains:
                 real_right_face.setAutoDraw(False)
             
             # *real_RL_response* updates
-            if t >= 0 and real_RL_response.status == NOT_STARTED:
+            if t >= 1 and real_RL_response.status == NOT_STARTED:
                 # keep track of start time/frame for later
                 real_RL_response.tStart = t
                 real_RL_response.frameNStart = frameN  # exact frame index
@@ -2450,7 +2366,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                 # keyboard checking is just starting
                 win.callOnFlip(real_RL_response.clock.reset)  # t=0 on next screen flip
                 event.clearEvents(eventType='keyboard')
-            frameRemains = 0 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
+            frameRemains = 1 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
             if real_RL_response.status == STARTED and t >= frameRemains:
                 real_RL_response.status = STOPPED
             if real_RL_response.status == STARTED:
@@ -2471,12 +2387,12 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                     continueRoutine = False
             
             # *fix_real* updates
-            if t >= 0.0 and fix_real.status == NOT_STARTED:
+            if t >= 0 and fix_real.status == NOT_STARTED:
                 # keep track of start time/frame for later
                 fix_real.tStart = t
                 fix_real.frameNStart = frameN  # exact frame index
                 fix_real.setAutoDraw(True)
-            frameRemains = 0.0 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
+            frameRemains = 0 + 4- win.monitorFramePeriod * 0.75  # most of one frame period left
             if fix_real.status == STARTED and t >= frameRemains:
                 fix_real.setAutoDraw(False)
             
@@ -2538,9 +2454,8 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             else:
                 if session_name == 'plusneu':
                     real_money[session_name] += 0
-                elif session_name == 'plusneg':
+                elif session_name == 'plusmin':
                     real_money[session_name] -= custom_params['RL_params']['lose_amount']
-            
         
         # ------Prepare to start Routine "real_RL_feedback"-------
         t = 0
@@ -2688,7 +2603,7 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
         routineTimer.reset()
         thisExp.nextEntry()
         
-    # completed 1 repeats of 'real_trials'
+    # completed (int(n_trials / 50)) repeats of 'real_trials'
     
     
     # ------Prepare to start Routine "overview_money"-------
@@ -2866,12 +2781,12 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
         continueRoutine = True
         # update component parameters for each repeat
         from custom_rating_scales import construct_rating_scale
-        post_rating_scale = construct_rating_scale(rating_attribute, win=win)
+        post_rating_scale = construct_rating_scale(rating_attribute, low_high=[rating_low, rating_high], win=win)
         
-        if not question_details:
-            question_details = ''
-        pre_rating_instruct_txt_2.setText(question)
-        rating_press_to_continue_2.setText(question_details)
+        if not rating_question_details:
+            rating_question_details = ''
+        pre_rating_instruct_txt_2.setText(rating_question)
+        rating_press_to_continue_2.setText(rating_question_details)
         post_rating_instruct_continue = event.BuilderKeyResponse()
         # keep track of which components have finished
         post_rating_instructComponents = [post_rating_instruct_common, pre_rating_instruct_txt_2, rating_press_to_continue_2, click_to_continue_2, post_rating_instruct_continue]
@@ -3174,6 +3089,7 @@ while continueRoutine and routineTimer.getTime() > 0:
 for thisComponent in thanksComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
+
 
 
 

@@ -105,3 +105,4 @@ venv.bak/
 logs/*/*.png
 stims
 
+.vscode

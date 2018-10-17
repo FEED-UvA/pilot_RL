@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.90.2),
-    on Tue Oct 16 11:50:42 2018
+    on Wed Oct 17 11:49:40 2018
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -1488,7 +1488,7 @@ for thisSession_loop in session_loop:
     frameN = -1
     continueRoutine = True
     # update component parameters for each repeat
-    instruct_RL_2_txt_4.setText('Let op! Er bestaan geen absoluut ‘correcte’ antwoorden,\nmaar sommige gezichten hebben een hogere kans om gevolgd\nte worden door een ‘correct’ feedback (groen plus-symbool).\n\nProbeer steeds het gezicht te selecteren met het hoogste\nkans op correct feedback.\n\nJe hebt 3 seconden om te kiezen.\n\n(Druk op een willekeurige knop om verder te gaan.)')
+    instruct_RL_2_txt_4.setText("Let op! Er bestaan geen absoluut ‘correcte’ antwoorden,\nmaar sommige gezichten hebben een hogere kans om gevolgd\nte worden door een ‘correct’ feedback (groen plus-symbool).\n\nProbeer steeds het gezicht te selecteren met het hoogste\nkans op de 'correct' feedback.\n\nJe hebt 3 seconden om te kiezen.\n\n(Druk op een willekeurige knop om verder te gaan.)")
     instruct_RL_2_resp_3 = event.BuilderKeyResponse()
     # keep track of which components have finished
     instruct_RL_2_1Components = [instruct_RL_2_txt_4, instruct_RL_2_resp_3]
@@ -1725,7 +1725,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         practice_skip_txt = """
     Om het nog iets moeilijker te maken, krijg je straks
     niet één combinatie van 2 gezichten, maar TWEE combinaties
-    van 2 gezichten! Je moet dus van twee combinaties proberen
+    van 2 gezichten! Je moet dus van iedere combinatie proberen
     te leren welke van de twee het meest "waardevolle" gezicht is!
     
     Om te checken of je het snapt, ga je dit leer-taakje even oefenen.
@@ -1969,7 +1969,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                     practice_response.keys = theseKeys[-1]  # just the last key pressed
                     practice_response.rt = practice_response.clock.getTime()
                     # was this 'correct'?
-                    if (practice_response.keys == str(correct_resp)) or (practice_response.keys == correct_resp):
+                    if (practice_response.keys == str(rewarded_resp)) or (practice_response.keys == rewarded_resp):
                         practice_response.corr = 1
                     else:
                         practice_response.corr = 0
@@ -2027,7 +2027,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         if practice_response.keys in ['', [], None]:  # No response was made
             practice_response.keys=None
             # was no response the correct answer?!
-            if str(correct_resp).lower() == 'none':
+            if str(rewarded_resp).lower() == 'none':
                practice_response.corr = 1  # correct non-response
             else:
                practice_response.corr = 0  # failed to respond (incorrectly)
@@ -2453,7 +2453,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                     real_RL_response.keys = theseKeys[-1]  # just the last key pressed
                     real_RL_response.rt = real_RL_response.clock.getTime()
                     # was this 'correct'?
-                    if (real_RL_response.keys == str(correct_resp)) or (real_RL_response.keys == correct_resp):
+                    if (real_RL_response.keys == str(rewarded_resp)) or (real_RL_response.keys == rewarded_resp):
                         real_RL_response.corr = 1
                     else:
                         real_RL_response.corr = 0
@@ -2511,7 +2511,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         if real_RL_response.keys in ['', [], None]:  # No response was made
             real_RL_response.keys=None
             # was no response the correct answer?!
-            if str(correct_resp).lower() == 'none':
+            if str(rewarded_resp).lower() == 'none':
                real_RL_response.corr = 1  # correct non-response
             else:
                real_RL_response.corr = 0  # failed to respond (incorrectly)

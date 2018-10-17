@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 
-def clean(file, out_dir=op.join('data', 'pilot_RL')):
+def clean(file, out_dir=op.abspath('data')):
 
     RATING_COLS = {'rating_attribute': 'attribute', 'session_name': 'session_condition',
                    'number_str': 'session_order', 'stim_file': 'image',
@@ -14,7 +14,6 @@ def clean(file, out_dir=op.join('data', 'pilot_RL')):
                    'post_rating_scale.rt': 'post_rating_rt'}
     
     sub_name = op.basename(file).split('_')[0]
-    
     df = pd.read_csv(file)
     
     rating_df = (df.loc[df.phase == 'pre_rating', RATING_COLS.keys()]
@@ -35,14 +34,19 @@ def clean(file, out_dir=op.join('data', 'pilot_RL')):
     )
 
     LEARNING_COLS = {'condition': 'reward_choice', 'left_face': 'left_face', 'right_face': 'right_face',
-                     'correct_resp': 'correct_resp', 'real_RL_response.rt': 'RT', 'real_RL_response.keys': 'actual_resp',
-                     'real_RL_response.corr': 'correct', 'session_name': 'session'}
+                     'rewarded_resp': 'rewarded_resp', 'real_RL_response.rt': 'RT',
+                     'real_RL_response.keys': 'actual_resp', 'real_RL_response.corr': 'rewarded',
+                     'session_name': 'session'}
 
     learning_df = df.loc[df.phase == 'learning', LEARNING_COLS.keys()]
     learning_df = (learning_df
         .rename(columns=LEARNING_COLS)
         .replace({'logs/%s/' % sub_name: ''}, regex=True)
+        .assign(correct_resp=['f' if int(op.basename(s).split('rewardprob-')[-1].split('_')[0]) in [80, 64] else 'j'
+                              for s in learning_df.left_face])  # change this to use correct_resp
     )
+
+    learning_df['correct'] = (learning_df.correct_resp == learning_df.actual_resp).astype(int)
 
     if not op.isdir(out_dir):
         os.makedirs(out_dir)
@@ -53,5 +57,5 @@ def clean(file, out_dir=op.join('data', 'pilot_RL')):
 
 if __name__ == '__main__':
 
-    test_file = 'logs/sub-99/sub-99_events.csv'
+    test_file = 'backup_data/sub-99/sub-99_events.csv'
     clean(test_file)

@@ -1113,7 +1113,7 @@
         <Param name="store" updates="constant" val="last key" valType="str"/>
         <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
         <Param name="storeCorrect" updates="constant" val="True" valType="bool"/>
-        <Param name="correctAns" updates="constant" val="$correct_resp" valType="str"/>
+        <Param name="correctAns" updates="constant" val="$rewarded_resp" valType="str"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
       <GratingComponent name="fix_practice">
@@ -1346,7 +1346,7 @@
         <Param name="store" updates="constant" val="last key" valType="str"/>
         <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
         <Param name="storeCorrect" updates="constant" val="True" valType="bool"/>
-        <Param name="correctAns" updates="constant" val="$correct_resp" valType="str"/>
+        <Param name="correctAns" updates="constant" val="$rewarded_resp" valType="str"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
       <GratingComponent name="fix_real">
