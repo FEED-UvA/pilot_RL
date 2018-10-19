@@ -526,6 +526,14 @@
       </KeyboardComponent>
     </Routine>
     <Routine name="thanks">
+      <CodeComponent name="calc_reward">
+        <Param name="name" updates="None" val="calc_reward" valType="code"/>
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="with open(rewards_file, 'a') as rewards_file_f:&amp;#10;    rewards_file_f.write('Total: %.1f' % (sum(overview_rewards) / 2))&amp;#10;    " valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+      </CodeComponent>
       <TextComponent name="thanks_txt">
         <Param name="name" updates="None" val="thanks_txt" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
@@ -850,7 +858,7 @@
     <Routine name="welcome_1">
       <CodeComponent name="setup_exp">
         <Param name="name" updates="None" val="setup_exp" valType="code"/>
-        <Param name="Begin Experiment" updates="constant" val="import os&amp;#10;import os.path as op&amp;#10;import pandas as pd&amp;#10;import shutil&amp;#10;import yaml&amp;#10;import sys&amp;#10;from glob import glob&amp;#10;&amp;#10;# Load params&amp;#10;with open('params.yml', 'r') as params:&amp;#10;    custom_params = yaml.load(params)&amp;#10;    text_size = custom_params['text_size']&amp;#10;    wrap_width = custom_params['wrap_width']&amp;#10;&amp;#10;    if sys.platform == 'darwin':&amp;#10;        wrap_width = 30&amp;#10;&amp;#10;    face_size = custom_params['face_size']&amp;#10;    n_trials = int(custom_params['n_trials'])&amp;#10;&amp;#10;# Define variables dependent on subject&amp;#10;subj_info_df = pd.read_csv('subject_info.csv')&amp;#10;sub_nr = expInfo['participant']&amp;#10;this_subj_df = subj_info_df.query('subject_id == @sub_nr')&amp;#10;&amp;#10;RL_order = this_subj_df['RL_order'].values[0]&amp;#10;face_gender = this_subj_df['face_gender'].values[0]&amp;#10;&amp;#10;# Create new subject dir in which to store stims/logs&amp;#10;sub_dir = op.join('logs', 'sub-%s' % sub_nr)&amp;#10;if not op.isdir(sub_dir):&amp;#10;    os.makedirs(sub_dir)&amp;#10;&amp;#10;# Remove existing stuff&amp;#10;existing_imgs = glob(op.join(sub_dir, '*.png'))&amp;#10;existing_csvs = glob(op.join(sub_dir, '*.csv'))&amp;#10;_ = [os.remove(f) for f in existing_imgs]&amp;#10;_ = [os.remove(f) for f in existing_csvs]&amp;#10;&amp;#10;rewards_file = op.join(sub_dir, 'rewards.txt')&amp;#10;if op.isfile(rewards_file):&amp;#10;    os.remove(rewards_file)&amp;#10;else:&amp;#10;    open(rewards_file, 'a').close()&amp;#10;&amp;#10;if sys.platform[:3] == 'win':&amp;#10;    sys.path.append(op.abspath('deps'))&amp;#10;    stims_file = 'stims_windows.csv'&amp;#10;else:&amp;#10;    stims_file = 'stims.csv'" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="import os&amp;#10;import os.path as op&amp;#10;import pandas as pd&amp;#10;import shutil&amp;#10;import yaml&amp;#10;import sys&amp;#10;from glob import glob&amp;#10;&amp;#10;# Load params&amp;#10;with open('params.yml', 'r') as params:&amp;#10;    custom_params = yaml.load(params)&amp;#10;    text_size = custom_params['text_size']&amp;#10;    wrap_width = custom_params['wrap_width']&amp;#10;&amp;#10;    if sys.platform == 'darwin':&amp;#10;        wrap_width = 30&amp;#10;&amp;#10;    face_size = custom_params['face_size']&amp;#10;    n_trials = int(custom_params['n_trials'])&amp;#10;&amp;#10;# Define variables dependent on subject&amp;#10;subj_info_df = pd.read_csv('subject_info.csv')&amp;#10;sub_nr = expInfo['participant']&amp;#10;this_subj_df = subj_info_df.query('subject_id == @sub_nr')&amp;#10;&amp;#10;RL_order = this_subj_df['RL_order'].values[0]&amp;#10;face_gender = this_subj_df['face_gender'].values[0]&amp;#10;&amp;#10;# Create new subject dir in which to store stims/logs&amp;#10;sub_dir = op.join('logs', 'sub-%s' % sub_nr)&amp;#10;if not op.isdir(sub_dir):&amp;#10;    os.makedirs(sub_dir)&amp;#10;&amp;#10;# Remove existing stuff&amp;#10;existing_imgs = glob(op.join(sub_dir, '*.png'))&amp;#10;existing_csvs = glob(op.join(sub_dir, '*.csv'))&amp;#10;_ = [os.remove(f) for f in existing_imgs]&amp;#10;_ = [os.remove(f) for f in existing_csvs]&amp;#10;&amp;#10;rewards_file = op.join(sub_dir, 'rewards.txt')&amp;#10;if op.isfile(rewards_file):&amp;#10;    os.remove(rewards_file)&amp;#10;else:&amp;#10;    open(rewards_file, 'a').close()&amp;#10;&amp;#10;if sys.platform[:3] == 'win':&amp;#10;    sys.path.append(op.abspath('deps'))&amp;#10;    stims_file = 'stims_windows.csv'&amp;#10;else:&amp;#10;    stims_file = 'stims.csv'&amp;#10;&amp;#10;overview_rewards = []" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
@@ -1619,7 +1627,7 @@
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="with open(rewards_file, 'a') as rewards_file_f:&amp;#10;    rewards_file_f.write('%s rewards: %.1f\n' % (session_name, real_money[session_name]))&amp;#10;    " valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="overview_rewards.append(real_money[session_name])&amp;#10;with open(rewards_file, 'a') as rewards_file_f:&amp;#10;    rewards_file_f.write('%s rewards: %.1f\n' % (session_name, real_money[session_name]))&amp;#10;    " valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
       </CodeComponent>
     </Routine>

@@ -1,0 +1,4 @@
+Practice rewards: 2.6
+plusmin rewards: 7.4
+Practice rewards: 2.6
+plusneu rewards: 15.7

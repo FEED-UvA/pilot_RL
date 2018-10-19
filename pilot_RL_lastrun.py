@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.90.2),
-    on oktober 17, 2018, at 12:57
+    on oktober 19, 2018, at 13:44
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -117,6 +117,8 @@ if sys.platform[:3] == 'win':
     stims_file = 'stims_windows.csv'
 else:
     stims_file = 'stims.csv'
+
+overview_rewards = []
 welcome_txt_1 = visual.TextStim(win=win, name='welcome_txt_1',
     text='Welkom bij dit experiment!\n\nDit experiment gaat over de perceptie van gezichten en de invloed van associatief leren.\n\nHet experiment bestaat uit twee fases:\n- een uitgebreide beoordelings-fase\n- een leer-fase met een korte beoordelingsfase (x2)\n\nDe leer-fase (met korte beoordeling daarna) doe je twee keer.',
     font='Arial',
@@ -521,12 +523,13 @@ end_of_session_txt = visual.TextStim(win=win, name='end_of_session_txt',
 
 # Initialize components for Routine "thanks"
 thanksClock = core.Clock()
+
 thanks_txt = visual.TextStim(win=win, name='thanks_txt',
     text='Bedankt voor je deelname!\nDe taak zal vanzelf afsluiten.',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
-    depth=0.0);
+    depth=-1.0);
 
 # Create some handy timers
 globalClock = core.Clock()  # to track the time since experiment started
@@ -1185,7 +1188,7 @@ from face_selection import select_stim_based_on_similarity
 
 rating_df.to_csv(op.join(sub_dir, 'sub-%s_face-ratings.csv' % sub_nr))
 
-if expInfo['skip_ratings']:
+if expInfo['skip_ratings'] == 'True':
     print("Trying to find existing ratings for subject %s" % sub_nr)
     rating_df = pd.read_csv(op.join('test_data', 'sub-%s_face-ratings.csv' % sub_nr))
 
@@ -2753,6 +2756,7 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
     for thisComponent in overview_moneyComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
+    overview_rewards.append(real_money[session_name])
     with open(rewards_file, 'a') as rewards_file_f:
         rewards_file_f.write('%s rewards: %.1f\n' % (session_name, real_money[session_name]))
         
@@ -3119,6 +3123,9 @@ frameN = -1
 continueRoutine = True
 routineTimer.add(5.000000)
 # update component parameters for each repeat
+with open(rewards_file, 'a') as rewards_file_f:
+    rewards_file_f.write('Total: %.1f' % (sum(overview_rewards) / 2))
+    
 # keep track of which components have finished
 thanksComponents = [thanks_txt]
 for thisComponent in thanksComponents:
@@ -3131,6 +3138,7 @@ while continueRoutine and routineTimer.getTime() > 0:
     t = thanksClock.getTime()
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
+    
     
     # *thanks_txt* updates
     if t >= 0.0 and thanks_txt.status == NOT_STARTED:
@@ -3163,6 +3171,8 @@ while continueRoutine and routineTimer.getTime() > 0:
 for thisComponent in thanksComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
+
+
 
 
 
