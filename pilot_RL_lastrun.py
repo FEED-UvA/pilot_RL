@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-This experiment was created using PsychoPy2 Experiment Builder (v1.90.2),
-    on oktober 19, 2018, at 13:44
+This experiment was created using PsychoPy2 Experiment Builder (v1.90.1),
+    on januari 22, 2019, at 17:00
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -22,12 +22,12 @@ import os  # handy system and path functions
 import sys  # to get file system encoding
 
 # Ensure that relative paths start from the same directory as this script
-_thisDir = os.path.dirname(os.path.abspath(__file__))
+_thisDir = os.path.dirname(os.path.abspath(__file__)).decode(sys.getfilesystemencoding())
 os.chdir(_thisDir)
 
 # Store info about the experiment session
 expName = 'pilot_RL'  # from the Builder filename that created this script
-expInfo = {'participant': '', 'participant_gender': '', 'skip_practice': 'False', 'skip_ratings': 'False'}
+expInfo = {u'skip_ratings': u'False', u'participant': u'', u'skip_practice': u'False', u'participant_gender': u''}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
 if dlg.OK == False:
     core.quit()  # user pressed cancel
@@ -40,7 +40,7 @@ filename = _thisDir + os.sep + u'logs/sub-%s/sub-%s_events' % (expInfo['particip
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='D:\\pilot_RL\\pilot_RL.psyexp',
+    originPath=u'D:\\USERS\\FEED\\pilot_RL\\pilot_RL.psyexp',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -55,7 +55,7 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 win = visual.Window(
     size=[1920, 1080], fullscr=True, screen=-1,
     allowGUI=True, allowStencil=False,
-    monitor='test', color=[0,0,0], colorSpace='rgb',
+    monitor='default', color=[0,0,0], colorSpace='rgb',
     blendMode='avg', useFBO=True,
     units='deg')
 # store frame rate of monitor if we can measure it
@@ -89,9 +89,8 @@ with open('params.yml', 'r') as params:
 
 # Define variables dependent on subject
 subj_info_df = pd.read_csv('subject_info.csv')
-sub_nr = expInfo['participant']
+sub_nr = int(expInfo['participant'])
 this_subj_df = subj_info_df.query('subject_id == @sub_nr')
-
 RL_order = this_subj_df['RL_order'].values[0]
 face_gender = this_subj_df['face_gender'].values[0]
 
@@ -1421,7 +1420,7 @@ for thisSession_loop in session_loop:
     frameN = -1
     continueRoutine = True
     # update component parameters for each repeat
-    instruct_RL_2_txt_3.setText('Tijdens deze taak zie je steeds twee gezichten tegelijkertijd.\nEén van de gezichten is steeds ‘correct’ en de andere ‘incorrect’.\nIn het begin zul je niet weten welke van de twee gezichten ‘correct’\nof ‘incorrect’ is.\n\nProbeer steeds zo accuraat mogelijk te raden welke van de twee\ngezichten ‘correct’ is, door deze met links ("F" toets)\nof rechts ("J" toets) te selecteren.\n\n(Druk op een willekeurige knop om verder te gaan.)')
+    instruct_RL_2_txt_3.setText(u'Tijdens deze taak zie je steeds twee gezichten tegelijkertijd.\nE\xe9n van de gezichten is steeds \u2018correct\u2019 en de andere \u2018incorrect\u2019.\nIn het begin zul je niet weten welke van de twee gezichten \u2018correct\u2019\nof \u2018incorrect\u2019 is.\n\nProbeer steeds zo accuraat mogelijk te raden welke van de twee\ngezichten \u2018correct\u2019 is, door deze met links ("F" toets)\nof rechts ("J" toets) te selecteren.\n\n(Druk op een willekeurige knop om verder te gaan.)')
     instruct_RL_2_resp_2 = event.BuilderKeyResponse()
     # keep track of which components have finished
     instruct_RL_2Components = [instruct_RL_2_txt_3, instruct_RL_2_resp_2]
@@ -1491,7 +1490,7 @@ for thisSession_loop in session_loop:
     frameN = -1
     continueRoutine = True
     # update component parameters for each repeat
-    instruct_RL_2_txt_4.setText("Let op! Er bestaan geen absoluut ‘correcte’ antwoorden,\nmaar sommige gezichten hebben een hogere kans om gevolgd\nte worden door een ‘correct’ feedback (groen plus-symbool).\n\nProbeer steeds het gezicht te selecteren met het hoogste\nkans op de 'correct' feedback.\n\nJe hebt 3 seconden om te kiezen.\n\n(Druk op een willekeurige knop om verder te gaan.)")
+    instruct_RL_2_txt_4.setText(u"Let op! Er bestaan geen absoluut \u2018correcte\u2019 antwoorden,\nmaar sommige gezichten hebben een hogere kans om gevolgd\nte worden door een \u2018correct\u2019 feedback (groen plus-symbool).\n\nProbeer steeds het gezicht te selecteren met het hoogste\nkans op de 'correct' feedback.\n\nJe hebt 3 seconden om te kiezen.\n\n(Druk op een willekeurige knop om verder te gaan.)")
     instruct_RL_2_resp_3 = event.BuilderKeyResponse()
     # keep track of which components have finished
     instruct_RL_2_1Components = [instruct_RL_2_txt_4, instruct_RL_2_resp_3]
@@ -2058,9 +2057,9 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         continueRoutine = True
         routineTimer.add(1.000000)
         # update component parameters for each repeat
+        practice_feedback_sign.setFillColor(feedback_color)
         practice_feedback_sign.setOpacity(feedback_sign_opacity)
         practice_feedback_sign.setOri(feedback_ori)
-        practice_feedback_sign.setFillColor(feedback_color)
         practice_feedback_sign.setLineColor(feedback_color)
         practice_feedback_written_txt.setColor(feedback_color, colorSpace='rgb')
         practice_feedback_written_txt.setText(feedback_txt)
@@ -2541,9 +2540,9 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         continueRoutine = True
         routineTimer.add(1.000000)
         # update component parameters for each repeat
+        real_feedback_sign.setFillColor(feedback_color)
         real_feedback_sign.setOpacity(feedback_sign_opacity)
         real_feedback_sign.setOri(feedback_ori)
-        real_feedback_sign.setFillColor(feedback_color)
         real_feedback_sign.setLineColor(feedback_color)
         real_feedback_written_txt.setColor(feedback_color, colorSpace='rgb')
         real_feedback_written_txt.setText(feedback_txt)
