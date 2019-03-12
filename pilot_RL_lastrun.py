@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-This experiment was created using PsychoPy2 Experiment Builder (v1.90.1),
-    on januari 22, 2019, at 17:00
+This experiment was created using PsychoPy3 Experiment Builder (v3.0.2),
+    on januari 24, 2019, at 15:39
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -21,18 +21,21 @@ from numpy.random import random, randint, normal, shuffle
 import os  # handy system and path functions
 import sys  # to get file system encoding
 
+
 # Ensure that relative paths start from the same directory as this script
-_thisDir = os.path.dirname(os.path.abspath(__file__)).decode(sys.getfilesystemencoding())
+_thisDir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(_thisDir)
 
 # Store info about the experiment session
+psychopyVersion = '3.0.2'
 expName = 'pilot_RL'  # from the Builder filename that created this script
-expInfo = {u'skip_ratings': u'False', u'participant': u'', u'skip_practice': u'False', u'participant_gender': u''}
+expInfo = {'skip_ratings': False, 'participant': '', 'skip_practice': False, 'participant_gender': ''}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
 if dlg.OK == False:
     core.quit()  # user pressed cancel
 expInfo['date'] = data.getDateStr()  # add a simple timestamp
 expInfo['expName'] = expName
+expInfo['psychopyVersion'] = psychopyVersion
 
 # Data file name stem = absolute path + name; later add .psyexp, .csv, .log, etc
 filename = _thisDir + os.sep + u'logs/sub-%s/sub-%s_events' % (expInfo['participant'], expInfo['participant'])
@@ -40,7 +43,7 @@ filename = _thisDir + os.sep + u'logs/sub-%s/sub-%s_events' % (expInfo['particip
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath=u'D:\\USERS\\FEED\\pilot_RL\\pilot_RL.psyexp',
+    originPath='D:\\USERS\\FEED\\pilot_RL\\pilot_RL_lastrun.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -117,12 +120,14 @@ if sys.platform[:3] == 'win':
 else:
     stims_file = 'stims.csv'
 
+stims_file = 'stims.csv'
 overview_rewards = []
 welcome_txt_1 = visual.TextStim(win=win, name='welcome_txt_1',
     text='Welkom bij dit experiment!\n\nDit experiment gaat over de perceptie van gezichten en de invloed van associatief leren.\n\nHet experiment bestaat uit twee fases:\n- een uitgebreide beoordelings-fase\n- een leer-fase met een korte beoordelingsfase (x2)\n\nDe leer-fase (met korte beoordeling daarna) doe je twee keer.',
     font='Arial',
     pos=(0, 5), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-1.0);
 setup_RL_image = visual.ImageStim(
     win=win, name='setup_RL_image',
@@ -135,7 +140,8 @@ welcome_txt_1_2 = visual.TextStim(win=win, name='welcome_txt_1_2',
     text='(Druk op een willekeurige knop om door te gaan.)',
     font='Arial',
     pos=(0, -10), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-3.0);
 
 # Initialize components for Routine "welcome_2"
@@ -144,7 +150,8 @@ welcome_txt_2 = visual.TextStim(win=win, name='welcome_txt_2',
     text="In de eerste fase ga je gezichten beoordelen\nop een aantal eigenschappen (aantrekkelijkheid, betrouwbaarheid, etc.).\nDit duurt zo'n 10 minuten.\n\n(Druk op een willekeurige toets om verder te gaan.)",
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=0.0);
 
 # Initialize components for Routine "welcome_3"
@@ -153,7 +160,8 @@ welcome_txt_3 = visual.TextStim(win=win, name='welcome_txt_3',
     text='Je zal de gezichten beoordelen op een schaal.\nJe gebruikt de volgende knoppen:\n\n- F: pointer naar LINKS\n- J: pointer naar RECHTS\n- spatie: keuze bevestigen\n\nEr is geen tijdsdruk.\n\n(Druk op een willekeurige toets om een voorbeeld te zien.)',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=0.0);
 
 # Initialize components for Routine "example_scale"
@@ -169,7 +177,8 @@ example_scale_hint = visual.TextStim(win=win, name='example_scale_hint',
     text='Dit is om te "oefenen"!\n\n(F = links, J = rechts, spatie = bevestig)\n',
     font='Arial',
     pos=(0, 10), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-1.0);
 example_scale_1 = visual.RatingScale(win=win, name='example_scale_1', leftKeys=['f'],
 rightKeys=['j'],
@@ -192,7 +201,8 @@ welcome_txt_4 = visual.TextStim(win=win, name='welcome_txt_4',
     text='Als de beoordelings-fase duidelijk is,\ndan kunnen we beginnen.\n\n(Druk op een knop om de eerste sessie te beginnen!)',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=0.0);
 
 # Initialize components for Routine "pre_rating_instruct"
@@ -203,25 +213,29 @@ pre_rating_instruct_common = visual.TextStim(win=win, name='pre_rating_instruct_
     text='Bij de gezichten die straks in beeld komen\nmoet je de volgende vraag beantwoorden:',
     font='Arial',
     pos=(0, 8), height=(text_size + 0.5), wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-1.0);
 pre_rating_instruct_txt = visual.TextStim(win=win, name='pre_rating_instruct_txt',
     text='default text',
     font='Arial',
     pos=(0, 1), height=(text_size + 0.5), wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-2.0);
 question_details_txt = visual.TextStim(win=win, name='question_details_txt',
     text='default text',
     font='Arial',
     pos=(0, -3), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-3.0);
 click_to_continue = visual.TextStim(win=win, name='click_to_continue',
     text='(Als de vraag duidelijk is, druk dan op een willekeurige toets om te beginnen.)',
     font='Arial',
     pos=(0, -8), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-4.0);
 
 # Initialize components for Routine "pre_rating"
@@ -242,7 +256,8 @@ pause_rating_text = visual.TextStim(win=win, name='pause_rating_text',
     text='Als je wilt, kan je nu even pauze nemen.\n\n(Om door te gaan, druk op een willekeurige toets.)\n',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=0.0);
 
 # Initialize components for Routine "select_faces"
@@ -256,7 +271,8 @@ instruct_RL_1_txt = visual.TextStim(win=win, name='instruct_RL_1_txt',
     text='default text',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-1.0);
 
 # Initialize components for Routine "instruct_RL_2"
@@ -265,7 +281,8 @@ instruct_RL_2_txt_3 = visual.TextStim(win=win, name='instruct_RL_2_txt_3',
     text='default text',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=0.0);
 
 # Initialize components for Routine "instruct_RL_2_1"
@@ -274,7 +291,8 @@ instruct_RL_2_txt_4 = visual.TextStim(win=win, name='instruct_RL_2_txt_4',
     text='default text',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=0.0);
 
 # Initialize components for Routine "instruct_RL_2_2"
@@ -283,7 +301,8 @@ instruct_RL_2_txt = visual.TextStim(win=win, name='instruct_RL_2_txt',
     text='default text',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=0.0);
 
 # Initialize components for Routine "instruct_RL_3"
@@ -293,7 +312,8 @@ instruct_RL_3_txt = visual.TextStim(win=win, name='instruct_RL_3_txt',
     text='default text',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-1.0);
 
 # Initialize components for Routine "instruct_RL_5"
@@ -303,7 +323,8 @@ instruct_RL_5_txt = visual.TextStim(win=win, name='instruct_RL_5_txt',
     text='default text',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-1.0);
 
 # Initialize components for Routine "pre_fix"
@@ -340,7 +361,8 @@ practice_response_prompt = visual.TextStim(win=win, name='practice_response_prom
     text='Kies links ("f") of rechts ("j").\nJe hebt 3 seconden om te antwoorden!',
     font='Arial',
     pos=(0, -6), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-3.0);
 fix_practice = visual.GratingStim(
     win=win, name='fix_practice',
@@ -363,7 +385,8 @@ practice_feedback_written_txt = visual.TextStim(win=win, name='practice_feedback
     text='default text',
     font='Arial',
     pos=(0, -1), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color=1.0, colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-1.0);
 
 # Initialize components for Routine "begin_real_RL"
@@ -374,7 +397,8 @@ begin_real_RL_txt = visual.TextStim(win=win, name='begin_real_RL_txt',
     text='default text',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-2.0);
 
 # Initialize components for Routine "begin_real_RL2"
@@ -384,7 +408,8 @@ begin_real_RL_txt_2 = visual.TextStim(win=win, name='begin_real_RL_txt_2',
     text='default text',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-1.0);
 
 # Initialize components for Routine "pre_fix_2"
@@ -439,7 +464,8 @@ real_feedback_written_txt = visual.TextStim(win=win, name='real_feedback_written
     text='default text',
     font='Arial',
     pos=(0, -1), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color=1.0, colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-1.0);
 
 # Initialize components for Routine "pause_RL"
@@ -449,7 +475,8 @@ pause_txt = visual.TextStim(win=win, name='pause_txt',
     text='default text',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-1.0);
 
 # Initialize components for Routine "overview_money"
@@ -458,7 +485,8 @@ overview_money_txt = visual.TextStim(win=win, name='overview_money_txt',
     text='default text',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=0.0);
 
 
@@ -468,7 +496,8 @@ post_rating_intro_txt = visual.TextStim(win=win, name='post_rating_intro_txt',
     text='default text',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=0.0);
 
 # Initialize components for Routine "post_rating_instruct"
@@ -479,25 +508,29 @@ post_rating_instruct_common = visual.TextStim(win=win, name='post_rating_instruc
     text='Bij de gezichten die straks in beeld komen\nmoet je de volgende vraag beantwoorden:',
     font='Arial',
     pos=(0, 8), height=(text_size + 0.5), wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-1.0);
 pre_rating_instruct_txt_2 = visual.TextStim(win=win, name='pre_rating_instruct_txt_2',
     text='default text',
     font='Arial',
     pos=(0, 1), height=(text_size + 0.5), wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-2.0);
 rating_press_to_continue_2 = visual.TextStim(win=win, name='rating_press_to_continue_2',
     text='default text',
     font='Arial',
     pos=(0, -3), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-3.0);
 click_to_continue_2 = visual.TextStim(win=win, name='click_to_continue_2',
     text='(Als de vraag duidelijk is, druk dan op een willekeurige toets om te beginnen.)',
     font='Arial',
     pos=(0, -8), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-4.0);
 
 # Initialize components for Routine "post_rating"
@@ -517,7 +550,8 @@ end_of_session_txt = visual.TextStim(win=win, name='end_of_session_txt',
     text='default text',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=wrap_width, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=0.0);
 
 # Initialize components for Routine "thanks"
@@ -527,7 +561,8 @@ thanks_txt = visual.TextStim(win=win, name='thanks_txt',
     text='Bedankt voor je deelname!\nDe taak zal vanzelf afsluiten.',
     font='Arial',
     pos=(0, 0), height=text_size, wrapWidth=None, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
     depth=-1.0);
 
 # Create some handy timers
@@ -595,6 +630,10 @@ while continueRoutine:
             # a response ends the routine
             continueRoutine = False
     
+    # check for quit (typically the Esc key)
+    if endExpNow or event.getKeys(keyList=["escape"]):
+        core.quit()
+    
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         break
@@ -603,10 +642,6 @@ while continueRoutine:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
-    
-    # check for quit (the Esc key)
-    if endExpNow or event.getKeys(keyList=["escape"]):
-        core.quit()
     
     # refresh the screen
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -665,6 +700,10 @@ while continueRoutine:
             # a response ends the routine
             continueRoutine = False
     
+    # check for quit (typically the Esc key)
+    if endExpNow or event.getKeys(keyList=["escape"]):
+        core.quit()
+    
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         break
@@ -673,10 +712,6 @@ while continueRoutine:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
-    
-    # check for quit (the Esc key)
-    if endExpNow or event.getKeys(keyList=["escape"]):
-        core.quit()
     
     # refresh the screen
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -734,6 +769,10 @@ while continueRoutine:
             # a response ends the routine
             continueRoutine = False
     
+    # check for quit (typically the Esc key)
+    if endExpNow or event.getKeys(keyList=["escape"]):
+        core.quit()
+    
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         break
@@ -742,10 +781,6 @@ while continueRoutine:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
-    
-    # check for quit (the Esc key)
-    if endExpNow or event.getKeys(keyList=["escape"]):
-        core.quit()
     
     # refresh the screen
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -799,6 +834,10 @@ while continueRoutine:
         example_scale_1.setAutoDraw(True)
     continueRoutine &= example_scale_1.noResponse  # a response ends the trial
     
+    # check for quit (typically the Esc key)
+    if endExpNow or event.getKeys(keyList=["escape"]):
+        core.quit()
+    
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         break
@@ -807,10 +846,6 @@ while continueRoutine:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
-    
-    # check for quit (the Esc key)
-    if endExpNow or event.getKeys(keyList=["escape"]):
-        core.quit()
     
     # refresh the screen
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -868,6 +903,10 @@ while continueRoutine:
             # a response ends the routine
             continueRoutine = False
     
+    # check for quit (typically the Esc key)
+    if endExpNow or event.getKeys(keyList=["escape"]):
+        core.quit()
+    
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         break
@@ -876,10 +915,6 @@ while continueRoutine:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
-    
-    # check for quit (the Esc key)
-    if endExpNow or event.getKeys(keyList=["escape"]):
-        core.quit()
     
     # refresh the screen
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -893,7 +928,7 @@ for thisComponent in welcome_4Components:
 routineTimer.reset()
 
 # set up handler to look after randomisation of conditions etc
-pre_rating_scales_loop = data.TrialHandler(nReps=(0 if expInfo['skip_ratings'] == 'True' else 1), method='random', 
+pre_rating_scales_loop = data.TrialHandler(nReps=0, method='random', 
     extraInfo=expInfo, originPath=-1,
     trialList=data.importConditions('ratings.csv'),
     seed=None, name='pre_rating_scales_loop')
@@ -985,6 +1020,10 @@ for thisPre_rating_scales_loop in pre_rating_scales_loop:
                 # a response ends the routine
                 continueRoutine = False
         
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             break
@@ -993,10 +1032,6 @@ for thisPre_rating_scales_loop in pre_rating_scales_loop:
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
         
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -1066,6 +1101,10 @@ for thisPre_rating_scales_loop in pre_rating_scales_loop:
             continueRoutine &= pre_rating_scale.noResponse  # a response ends the trial
             
             
+            # check for quit (typically the Esc key)
+            if endExpNow or event.getKeys(keyList=["escape"]):
+                core.quit()
+            
             # check if all components have finished
             if not continueRoutine:  # a component has requested a forced-end of Routine
                 break
@@ -1074,10 +1113,6 @@ for thisPre_rating_scales_loop in pre_rating_scales_loop:
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
-            
-            # check for quit (the Esc key)
-            if endExpNow or event.getKeys(keyList=["escape"]):
-                core.quit()
             
             # refresh the screen
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -1143,6 +1178,10 @@ for thisPre_rating_scales_loop in pre_rating_scales_loop:
                 # a response ends the routine
                 continueRoutine = False
         
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             break
@@ -1151,10 +1190,6 @@ for thisPre_rating_scales_loop in pre_rating_scales_loop:
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
         
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -1168,7 +1203,7 @@ for thisPre_rating_scales_loop in pre_rating_scales_loop:
     routineTimer.reset()
     thisExp.nextEntry()
     
-# completed (0 if expInfo['skip_ratings'] == 'True' else 1) repeats of 'pre_rating_scales_loop'
+# completed 0 repeats of 'pre_rating_scales_loop'
 
 
 # ------Prepare to start Routine "select_faces"-------
@@ -1280,6 +1315,10 @@ while continueRoutine:
     # update/draw components on each frame
     
     
+    # check for quit (typically the Esc key)
+    if endExpNow or event.getKeys(keyList=["escape"]):
+        core.quit()
+    
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         break
@@ -1288,10 +1327,6 @@ while continueRoutine:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
-    
-    # check for quit (the Esc key)
-    if endExpNow or event.getKeys(keyList=["escape"]):
-        core.quit()
     
     # refresh the screen
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -1389,6 +1424,10 @@ for thisSession_loop in session_loop:
                 # a response ends the routine
                 continueRoutine = False
         
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             break
@@ -1397,10 +1436,6 @@ for thisSession_loop in session_loop:
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
         
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -1420,7 +1455,7 @@ for thisSession_loop in session_loop:
     frameN = -1
     continueRoutine = True
     # update component parameters for each repeat
-    instruct_RL_2_txt_3.setText(u'Tijdens deze taak zie je steeds twee gezichten tegelijkertijd.\nE\xe9n van de gezichten is steeds \u2018correct\u2019 en de andere \u2018incorrect\u2019.\nIn het begin zul je niet weten welke van de twee gezichten \u2018correct\u2019\nof \u2018incorrect\u2019 is.\n\nProbeer steeds zo accuraat mogelijk te raden welke van de twee\ngezichten \u2018correct\u2019 is, door deze met links ("F" toets)\nof rechts ("J" toets) te selecteren.\n\n(Druk op een willekeurige knop om verder te gaan.)')
+    instruct_RL_2_txt_3.setText('Tijdens deze taak zie je steeds twee gezichten tegelijkertijd.\nEén van de gezichten is steeds ‘correct’ en de andere ‘incorrect’.\nIn het begin zul je niet weten welke van de twee gezichten ‘correct’\nof ‘incorrect’ is.\n\nProbeer steeds zo accuraat mogelijk te raden welke van de twee\ngezichten ‘correct’ is, door deze met links ("F" toets)\nof rechts ("J" toets) te selecteren.\n\n(Druk op een willekeurige knop om verder te gaan.)')
     instruct_RL_2_resp_2 = event.BuilderKeyResponse()
     # keep track of which components have finished
     instruct_RL_2Components = [instruct_RL_2_txt_3, instruct_RL_2_resp_2]
@@ -1460,6 +1495,10 @@ for thisSession_loop in session_loop:
                 # a response ends the routine
                 continueRoutine = False
         
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             break
@@ -1468,10 +1507,6 @@ for thisSession_loop in session_loop:
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
         
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -1490,7 +1525,7 @@ for thisSession_loop in session_loop:
     frameN = -1
     continueRoutine = True
     # update component parameters for each repeat
-    instruct_RL_2_txt_4.setText(u"Let op! Er bestaan geen absoluut \u2018correcte\u2019 antwoorden,\nmaar sommige gezichten hebben een hogere kans om gevolgd\nte worden door een \u2018correct\u2019 feedback (groen plus-symbool).\n\nProbeer steeds het gezicht te selecteren met het hoogste\nkans op de 'correct' feedback.\n\nJe hebt 3 seconden om te kiezen.\n\n(Druk op een willekeurige knop om verder te gaan.)")
+    instruct_RL_2_txt_4.setText("Let op! Er bestaan geen absoluut ‘correcte’ antwoorden,\nmaar sommige gezichten hebben een hogere kans om gevolgd\nte worden door een ‘correct’ feedback (groen plus-symbool).\n\nProbeer steeds het gezicht te selecteren met het hoogste\nkans op de 'correct' feedback.\n\nJe hebt 3 seconden om te kiezen.\n\n(Druk op een willekeurige knop om verder te gaan.)")
     instruct_RL_2_resp_3 = event.BuilderKeyResponse()
     # keep track of which components have finished
     instruct_RL_2_1Components = [instruct_RL_2_txt_4, instruct_RL_2_resp_3]
@@ -1530,6 +1565,10 @@ for thisSession_loop in session_loop:
                 # a response ends the routine
                 continueRoutine = False
         
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             break
@@ -1538,10 +1577,6 @@ for thisSession_loop in session_loop:
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
         
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -1609,6 +1644,10 @@ en %s
                 # a response ends the routine
                 continueRoutine = False
         
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             break
@@ -1617,10 +1656,6 @@ en %s
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
         
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -1692,6 +1727,10 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                 # a response ends the routine
                 continueRoutine = False
         
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             break
@@ -1700,10 +1739,6 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
         
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -1793,6 +1828,10 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                 # a response ends the routine
                 continueRoutine = False
         
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             break
@@ -1801,10 +1840,6 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
         
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -1851,6 +1886,10 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         if pre_fix_icon.status == STARTED and t >= frameRemains:
             pre_fix_icon.setAutoDraw(False)
         
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             break
@@ -1859,10 +1898,6 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
         
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -1960,7 +1995,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                 event.clearEvents(eventType='keyboard')
             frameRemains = 1 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
             if practice_response.status == STARTED and t >= frameRemains:
-                practice_response.status = STOPPED
+                practice_response.status = FINISHED
             if practice_response.status == STARTED:
                 theseKeys = event.getKeys(keyList=['f', 'j'])
                 
@@ -1989,6 +2024,10 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                 fix_practice.setAutoDraw(False)
             
             
+            # check for quit (typically the Esc key)
+            if endExpNow or event.getKeys(keyList=["escape"]):
+                core.quit()
+            
             # check if all components have finished
             if not continueRoutine:  # a component has requested a forced-end of Routine
                 break
@@ -1997,10 +2036,6 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
-            
-            # check for quit (the Esc key)
-            if endExpNow or event.getKeys(keyList=["escape"]):
-                core.quit()
             
             # refresh the screen
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -2030,9 +2065,9 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             practice_response.keys=None
             # was no response the correct answer?!
             if str(rewarded_resp).lower() == 'none':
-               practice_response.corr = 1  # correct non-response
+               practice_response.corr = 1;  # correct non-response
             else:
-               practice_response.corr = 0  # failed to respond (incorrectly)
+               practice_response.corr = 0;  # failed to respond (incorrectly)
         # store data for practice_trials (TrialHandler)
         practice_trials.addData('practice_response.keys',practice_response.keys)
         practice_trials.addData('practice_response.corr', practice_response.corr)
@@ -2057,9 +2092,9 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         continueRoutine = True
         routineTimer.add(1.000000)
         # update component parameters for each repeat
-        practice_feedback_sign.setFillColor(feedback_color)
         practice_feedback_sign.setOpacity(feedback_sign_opacity)
         practice_feedback_sign.setOri(feedback_ori)
+        practice_feedback_sign.setFillColor(feedback_color)
         practice_feedback_sign.setLineColor(feedback_color)
         practice_feedback_written_txt.setColor(feedback_color, colorSpace='rgb')
         practice_feedback_written_txt.setText(feedback_txt)
@@ -2096,6 +2131,10 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             if practice_feedback_written_txt.status == STARTED and t >= frameRemains:
                 practice_feedback_written_txt.setAutoDraw(False)
             
+            # check for quit (typically the Esc key)
+            if endExpNow or event.getKeys(keyList=["escape"]):
+                core.quit()
+            
             # check if all components have finished
             if not continueRoutine:  # a component has requested a forced-end of Routine
                 break
@@ -2104,10 +2143,6 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
-            
-            # check for quit (the Esc key)
-            if endExpNow or event.getKeys(keyList=["escape"]):
-                core.quit()
             
             # refresh the screen
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -2198,6 +2233,10 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                 # a response ends the routine
                 continueRoutine = False
         
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             break
@@ -2206,10 +2245,6 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
         
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -2291,6 +2326,10 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                 # a response ends the routine
                 continueRoutine = False
         
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             break
@@ -2299,10 +2338,6 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
         
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -2346,6 +2381,10 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         if pre_fix_icon2.status == STARTED and t >= frameRemains:
             pre_fix_icon2.setAutoDraw(False)
         
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             break
@@ -2354,10 +2393,6 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
         
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -2444,7 +2479,7 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                 event.clearEvents(eventType='keyboard')
             frameRemains = 1 + 3- win.monitorFramePeriod * 0.75  # most of one frame period left
             if real_RL_response.status == STARTED and t >= frameRemains:
-                real_RL_response.status = STOPPED
+                real_RL_response.status = FINISHED
             if real_RL_response.status == STARTED:
                 theseKeys = event.getKeys(keyList=['f', 'j'])
                 
@@ -2473,6 +2508,10 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                 fix_real.setAutoDraw(False)
             
             
+            # check for quit (typically the Esc key)
+            if endExpNow or event.getKeys(keyList=["escape"]):
+                core.quit()
+            
             # check if all components have finished
             if not continueRoutine:  # a component has requested a forced-end of Routine
                 break
@@ -2481,10 +2520,6 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
-            
-            # check for quit (the Esc key)
-            if endExpNow or event.getKeys(keyList=["escape"]):
-                core.quit()
             
             # refresh the screen
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -2514,9 +2549,9 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             real_RL_response.keys=None
             # was no response the correct answer?!
             if str(rewarded_resp).lower() == 'none':
-               real_RL_response.corr = 1  # correct non-response
+               real_RL_response.corr = 1;  # correct non-response
             else:
-               real_RL_response.corr = 0  # failed to respond (incorrectly)
+               real_RL_response.corr = 0;  # failed to respond (incorrectly)
         # store data for real_trials (TrialHandler)
         real_trials.addData('real_RL_response.keys',real_RL_response.keys)
         real_trials.addData('real_RL_response.corr', real_RL_response.corr)
@@ -2540,9 +2575,9 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
         continueRoutine = True
         routineTimer.add(1.000000)
         # update component parameters for each repeat
-        real_feedback_sign.setFillColor(feedback_color)
         real_feedback_sign.setOpacity(feedback_sign_opacity)
         real_feedback_sign.setOri(feedback_ori)
+        real_feedback_sign.setFillColor(feedback_color)
         real_feedback_sign.setLineColor(feedback_color)
         real_feedback_written_txt.setColor(feedback_color, colorSpace='rgb')
         real_feedback_written_txt.setText(feedback_txt)
@@ -2579,6 +2614,10 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
             if real_feedback_written_txt.status == STARTED and t >= frameRemains:
                 real_feedback_written_txt.setAutoDraw(False)
             
+            # check for quit (typically the Esc key)
+            if endExpNow or event.getKeys(keyList=["escape"]):
+                core.quit()
+            
             # check if all components have finished
             if not continueRoutine:  # a component has requested a forced-end of Routine
                 break
@@ -2587,10 +2626,6 @@ de twee sessies mag je ook daadwerkelijk mee naar huis nemen
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
-            
-            # check for quit (the Esc key)
-            if endExpNow or event.getKeys(keyList=["escape"]):
-                core.quit()
             
             # refresh the screen
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -2653,6 +2688,10 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
                     # a response ends the routine
                     continueRoutine = False
             
+            # check for quit (typically the Esc key)
+            if endExpNow or event.getKeys(keyList=["escape"]):
+                core.quit()
+            
             # check if all components have finished
             if not continueRoutine:  # a component has requested a forced-end of Routine
                 break
@@ -2661,10 +2700,6 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
-            
-            # check for quit (the Esc key)
-            if endExpNow or event.getKeys(keyList=["escape"]):
-                core.quit()
             
             # refresh the screen
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -2734,6 +2769,10 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
                 continueRoutine = False
         
         
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             break
@@ -2742,10 +2781,6 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
         
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -2808,6 +2843,10 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
                 # a response ends the routine
                 continueRoutine = False
         
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             break
@@ -2816,10 +2855,6 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
         
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -2925,6 +2960,10 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
                     # a response ends the routine
                     continueRoutine = False
             
+            # check for quit (typically the Esc key)
+            if endExpNow or event.getKeys(keyList=["escape"]):
+                core.quit()
+            
             # check if all components have finished
             if not continueRoutine:  # a component has requested a forced-end of Routine
                 break
@@ -2933,10 +2972,6 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
-            
-            # check for quit (the Esc key)
-            if endExpNow or event.getKeys(keyList=["escape"]):
-                core.quit()
             
             # refresh the screen
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -3004,6 +3039,10 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
                     post_rating_scale.setAutoDraw(True)
                 continueRoutine &= post_rating_scale.noResponse  # a response ends the trial
                 
+                # check for quit (typically the Esc key)
+                if endExpNow or event.getKeys(keyList=["escape"]):
+                    core.quit()
+                
                 # check if all components have finished
                 if not continueRoutine:  # a component has requested a forced-end of Routine
                     break
@@ -3012,10 +3051,6 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
                     if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                         continueRoutine = True
                         break  # at least one component has not yet finished
-                
-                # check for quit (the Esc key)
-                if endExpNow or event.getKeys(keyList=["escape"]):
-                    core.quit()
                 
                 # refresh the screen
                 if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -3087,6 +3122,10 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
                 # a response ends the routine
                 continueRoutine = False
         
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             break
@@ -3095,10 +3134,6 @@ Het bedrag dat je deze sessie tot nu toe hebt verdiend: %.1f euro
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
         
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -3149,6 +3184,10 @@ while continueRoutine and routineTimer.getTime() > 0:
     if thanks_txt.status == STARTED and t >= frameRemains:
         thanks_txt.setAutoDraw(False)
     
+    # check for quit (typically the Esc key)
+    if endExpNow or event.getKeys(keyList=["escape"]):
+        core.quit()
+    
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         break
@@ -3157,10 +3196,6 @@ while continueRoutine and routineTimer.getTime() > 0:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
-    
-    # check for quit (the Esc key)
-    if endExpNow or event.getKeys(keyList=["escape"]):
-        core.quit()
     
     # refresh the screen
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
